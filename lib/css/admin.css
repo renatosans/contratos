@@ -1,0 +1,285 @@
+/* Geral */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Tahoma, Geneva, sans-serif;
+    color:#333;
+    font-size: 12px;
+}
+label.error{
+    color: #ff0000;
+}
+.resultBox{
+    width: 240px;
+    color: #C00000;
+    font-weight: bold;
+}
+#tryAgain{
+    color: #0073EA;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.scrollable{
+    width: 775px;
+    overflow: auto;
+}
+th{
+    text-align: left;
+    cursor: default;
+    padding: 1px 2px;
+}
+td{
+   padding: 2px 4px;
+}
+.centro{
+    text-align: center;
+}
+
+.flickTextBox{
+    border: 1px solid #DDDDDD;
+    color: #0073EA;
+    font-size: 12px;
+    height: 27px;
+    line-height: 27px;
+}
+.tableWraper{
+    width: 400px;
+}
+.filterOne{
+    float: right;
+    padding-left: 5px;
+}
+.pager{
+    overflow: hidden;
+    padding: 5px;
+    margin: auto;
+    width: 365px;
+}
+.pager span.wraper{
+    display: block;
+    float: left;
+}
+.pager span.center{
+    width: 220px;
+    text-align: center;
+}
+fieldset{
+    border: 1px solid #ddd;
+    color: #0073EA;
+    font-weight: bold;
+    padding: 10px;
+    float: left;
+}
+legend{
+    color: #0073EA;
+    font-size: 20px;
+}
+table {
+    width: 100%;
+    font-size: 0.9em;
+}
+table tbody tr {
+    cursor: pointer;
+    font-weight: bold;
+}
+table tbody td{
+}
+select{
+    background: url("../../img/ui-bg_highlight-soft_100_f6f6f6_1x100.png") repeat-x scroll 50% 50% #F6F6F6;
+    border: 1px solid #DDDDDD;
+    color:#000000;
+    vertical-align: middle;
+    padding: 5px 0;
+    float: left;
+}
+
+label{
+    display: block;
+    font-weight:bold;
+    margin-right:10px;
+    margin-top:10px;
+    overflow: hidden;
+}
+.left{
+    float: left;
+}
+
+/* Form Login */
+#login{
+    padding: 10px;
+}
+#login #logo-cliente{
+    float: left;
+}
+
+#login #login-form{
+    float: right;
+    text-align: right;
+}
+
+#msg-erro{
+    text-align:center;
+    color: #f00;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #aaa;
+    border-bottom:1px solid #aaa;
+    margin: 5px auto;
+    background-color: #fbc;
+    display: block;
+    clear: both;
+    padding: 15px 0;
+}
+
+/* Internas do Sistema */
+#cabecalho {
+    padding: 15px 0px;
+}
+
+#rodape {
+    clear: both;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 10px;
+}
+
+#centro{
+    overflow: hidden;
+    width: 1108px;
+    margin: auto;
+    margin-bottom: 10px;
+    clear: both;
+}
+
+#centro #menu {
+    width: 210px;
+    float: left;
+    font-size: 12px;
+    padding-right: 10px
+}
+#centro #menu a{
+    display: block;
+    text-align: left;
+    text-indent: 15px;
+}
+
+#centro #menu .tit-menu {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#centro #menu .separador {
+    width: 120px;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#lista {
+    float: left;
+    overflow: hidden;
+    background:#FFF;
+    border: 1px solid #DDDDDD;
+    padding: 10px;
+}
+#lista h1{
+    color: #0073EA;
+    font-size: 20px;
+}
+#lista h3{
+    color: #0073EA;
+    font-size: 15px;
+}
+
+#lista #itens .tit-secao {
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+}
+
+#lista #itens .busca {
+    font-size: 12px;
+    float: right;
+}
+
+#lista #itens .botao {
+    border: none;
+    vertical-align: middle;
+}
+
+#lista #navegacao{
+    text-align: center;
+    font-weight: bold;
+}
+
+#lista #navegacao img{
+    vertical-align: middle;
+}
+
+/* Pagina Principal */
+
+#lista #itens #principal{
+    padding: 10px;
+}
+
+#lista #itens #btnform{
+}
+
+#lista #itens #historico{
+    float: left;
+    width: 590px;
+    margin-top: 10px;
+}
+
+#lista #itens #historico h3{
+    width: 590px;
+    border: solid 1px #000000;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #dedede;
+}
+
+
+#lista #itens #listaComentarios{
+    float: left;
+    width: 590px;
+    height: 200px;
+    margin-top: 10px;
+}
+.clear{
+    display: block;
+    overflow: hidden;
+    clear: both;
+    padding: 5px 0px;
+}
+/*Dash Board*/
+.column {
+    width: 385px;
+    float: left;
+    min-height: 400px;
+    height: auto !important;
+    height: 400px;
+}
+.portlet { margin: 0 1em 1em 0; }
+.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+.portlet-header .ui-icon { float: right; }
+.portlet-content { padding: 0.4em; }
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }
+
+.multiselect {
+	width: 500px;
+	height: 150px;
+}
+.slimTable {
+    border-left:1px solid black; border-top:1px solid black; width:98%; margin-left:auto; margin-right:auto; border-spacing:0; font-size: 11px;
+}
+.slimTableHeader {
+    border-right:1px solid black; border-bottom:1px solid black; height:25px; margin:0; padding:0; text-align:center; background-color: #66ABF2;
+}
+.slimTableData {
+    border-right:1px solid black; border-bottom:1px solid black; height:20px; margin:0; padding:0; text-align:center;
+}
