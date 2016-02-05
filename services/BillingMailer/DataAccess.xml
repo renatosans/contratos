@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <dataaccess>
   <source name="MySQL 5.5">
-    <server>DATADB</server>
+    <server>189.19.81.95</server>
     <database>addonContratos</database>
     <username>root</username>
     <password>P@ssw0rd</password>
   </source>
   <source name="SQL Server 2008">
-    <server>DATADB</server>
+    <server>189.19.81.95</server>
     <database>SBO_MSANSEVERINO_PROD</database>
     <username>sapBusinessOne</username>
     <password>P@ssw0rd</password>
