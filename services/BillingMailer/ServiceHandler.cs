@@ -13,23 +13,27 @@ namespace BillingMailer
     public static class ServiceHandler
     {
         /// <summary>
-        /// Inicia um serviço do Windows
+        /// Inicia um serviço do Windows, aguarda até o status mudar para "Running"
         /// </summary>
         public static void StartService(String serviceName, int timeout)
         {
-            ServiceController service = new ServiceController(serviceName);
+            // Define o timeout da operação
             TimeSpan timeSpan = TimeSpan.FromMilliseconds(timeout);
+
+            ServiceController service = new ServiceController(serviceName);
             service.Start();
             service.WaitForStatus(ServiceControllerStatus.Running, timeSpan);
         }
 
         /// <summary>
-        /// Para um serviço do Windows
+        /// Para um serviço do Windows, aguarda até o status mudar para "Stopped"
         /// </summary>
         public static void StopService(String serviceName, int timeout)
         {
-            ServiceController service = new ServiceController(serviceName);
+            // Define o timeout da operação
             TimeSpan timeSpan = TimeSpan.FromMilliseconds(timeout);
+
+            ServiceController service = new ServiceController(serviceName);
             service.Stop();
             service.WaitForStatus(ServiceControllerStatus.Stopped, timeSpan);
         }
