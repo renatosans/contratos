@@ -30,10 +30,10 @@
 
     // Parâmetros de login no banco de dados
     $sqlserverAuthentication = Array(
-        "host"=>"DATADB",
+        "host"=>"localhost",
         "username"=>"sapBusinessOne",
         "password"=>"P@ssw0rd",
-        "database"=>"SBO_MSANSEVERINO_PROD"
+        "database"=>"SBO_DATACOPY"
     );
 
     // Itens do menu lateral
