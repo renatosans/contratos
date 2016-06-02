@@ -8,7 +8,7 @@
   </source>
   <source name="SQL Server 2008">
     <server>189.19.81.95</server>
-    <database>SBO_MSANSEVERINO_PROD</database>
+    <database>SBO_DATACOPY</database>
     <username>sapBusinessOne</username>
     <password>P@ssw0rd</password>
   </source>
