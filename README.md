@@ -1,4 +1,6 @@
-# Sistema de gestão de contratos
+![](https://github.com/renatosans/contratos/blob/master/img/admin/logo.png)
+
+# Gestão de contratos
 
 Sistema para outsourcing de impressão, gerencia os contratos de outsourcing.
 
