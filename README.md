@@ -1,4 +1,4 @@
-![](https://github.com/renatosans/contratos/blob/master/img/admin/logo.png)
+![](https://raw.githubusercontent.com/renatosans/contratos/master/img/admin/logo.png)
 
 # Gestão de contratos
 
