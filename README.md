@@ -2,9 +2,9 @@
 
 <br>
 
-Sistema para outsourcing de impressão, gerencia os contratos de outsourcing.
+#Sistema para outsourcing de impressão
 
-<hr>
+Gerencia os contratos de outsourcing de impressão e seus equipamentos.
 
 Funcionalidades
 <ul>
