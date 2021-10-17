@@ -27,7 +27,7 @@ class DataConnector{
         }
 
         if ( isset($this->mysqlConnection) ){
-            @mysqli_set_charset("utf8");
+            @mysqli_set_charset($this->mysqlConnection, "utf8");
             @mysqli_select_db($this->mysqlConnection, $options["database"]) ;
         }
 
