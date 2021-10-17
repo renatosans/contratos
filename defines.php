@@ -8,7 +8,7 @@
     $currentDir = $pathTrack[count($pathTrack)-1];
 
     // Diretórios utilizados no sistema
-    $root      = "/Contratos";
+    $root      = "";
     $pathImg   = $root."/img/admin";   // $root."/Images";
     $pathJs    = $root."/lib/js";      // $root."/Javascript";
     $pathCss   = $root."/lib/css";     // $root."/StyleSheets";
@@ -20,15 +20,15 @@
         "both"
     );
 
-    // Parâmetros de login no MySQL
+    // Parâmetros de login no banco de dados
     $mysqlAuthentication = Array(
         "host"=>"localhost",
         "username"=>"root",
-        "password"=>"p@ssw0rd",
+        "password"=>"",
         "database"=>"addoncontratos"
     );
 
-    // Parâmetros de login no SQLServer
+    // Parâmetros de login no banco de dados
     $sqlserverAuthentication = Array(
         "host"=>"localhost",
         "username"=>"sapBusinessOne",
