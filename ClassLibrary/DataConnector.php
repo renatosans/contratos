@@ -23,12 +23,12 @@ class DataConnector{
         }
 
         if (($this->databaseType == 'mySql') || ($this->databaseType == 'both')) {
-            $this->mysqlConnection = @mysql_connect($host, $options["username"], $options["password"]);
+            $this->mysqlConnection = @mysqli_connect($host, $options["username"], $options["password"]);
         }
 
         if ( isset($this->mysqlConnection) ){
-            @mysql_set_charset("utf8");
-            @mysql_select_db( $options["database"], $this->mysqlConnection ) ;
+            @mysqli_set_charset("utf8");
+            @mysqli_select_db( $options["database"], $this->mysqlConnection ) ;
         }
 
         if (isset($sqlserverAuthentication)){
