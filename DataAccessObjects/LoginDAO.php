@@ -21,7 +21,7 @@ class LoginDAO{
         if ($dto->id > 0)
             $query = "UPDATE login SET idExterno = ".$idExterno.", nome = '".$dto->nome."', usuario = '".$dto->usuario."', senha = '".$dto->senha."' WHERE id = ".$dto->id;
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysql_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -29,7 +29,7 @@ class LoginDAO{
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error($this->mysqlConnection));
             echo '<br/>';
         }
         return null;
@@ -37,10 +37,10 @@ class LoginDAO{
 
     function DeleteRecord($id){
         $query = "UPDATE login SET removido = 1 WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error($this->mysqlConnection));
             echo '<br/>';
         }
         return $result;
@@ -50,12 +50,13 @@ class LoginDAO{
         $dto = null;
 
         $query = "SELECT * FROM login WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error($this->mysqlConnection));
             echo '<br/><br/>';
+            return;
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
         $record = mysql_fetch_array($recordSet);
@@ -78,12 +79,13 @@ class LoginDAO{
         $query = "SELECT * FROM login WHERE removido = 0";
         if (!empty($filter)) $query = $query." AND ".$filter;
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error($this->mysqlConnection));
             echo '<br/><br/>';
+            return;
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
