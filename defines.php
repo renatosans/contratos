@@ -8,7 +8,7 @@
     $currentDir = $pathTrack[count($pathTrack)-1];
 
     // Diretórios utilizados no sistema
-    $root      = "";
+    $root      = "/Contratos";
     $pathImg   = $root."/img/admin";   // $root."/Images";
     $pathJs    = $root."/lib/js";      // $root."/Javascript";
     $pathCss   = $root."/lib/css";     // $root."/StyleSheets";
@@ -24,7 +24,7 @@
     $mysqlAuthentication = Array(
         "host"=>"localhost",
         "username"=>"root",
-        "password"=>"",
+        "password"=>"p@ssw0rd",
         "database"=>"addoncontratos"
     );
 
