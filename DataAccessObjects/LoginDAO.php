@@ -23,7 +23,7 @@ class LoginDAO{
 
         $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
