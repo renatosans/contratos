@@ -17,15 +17,15 @@ class AuthorizationDAO{
         if ($dto->id > 0)
             $query = "UPDATE autorizacao SET login_id = '".$dto->login_id."', funcionalidade = '".$dto->funcionalidade."', nivelAutorizacao = '".$dto->nivelAutorizacao."' WHERE id = ".$dto->id.";";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -33,10 +33,10 @@ class AuthorizationDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM autorizacao WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -46,22 +46,22 @@ class AuthorizationDAO{
         $dto = null;
 
         $query = "SELECT * FROM autorizacao WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new AuthorizationDTO();
         $dto->id                  = $record['id'];
         $dto->login_id            = $record['login_id'];
         $dto->funcionalidade      = $record['funcionalidade'];
         $dto->nivelAutorizacao    = $record['nivelAutorizacao'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -72,16 +72,16 @@ class AuthorizationDAO{
         $query = "SELECT * FROM autorizacao WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM autorizacao";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new AuthorizationDTO();
             $dto->id                  = $record['id'];
             $dto->login_id            = $record['login_id'];
@@ -91,7 +91,7 @@ class AuthorizationDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }
@@ -101,18 +101,18 @@ class AuthorizationDAO{
         $functionalityArray = array();
 
         $query = "SELECT * FROM funcionalidade";
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $functionalityArray;
 
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $functionalityArray[$record['id']] = $record['nome'];
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $functionalityArray;
     }
