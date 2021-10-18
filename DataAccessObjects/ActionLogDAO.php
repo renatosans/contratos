@@ -53,6 +53,7 @@ class ActionLogDAO{
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
+            return;
         }
         $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
@@ -87,6 +88,7 @@ class ActionLogDAO{
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
+            return;
         }
         $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
