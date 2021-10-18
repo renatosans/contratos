@@ -36,19 +36,23 @@ class DataConnector{
             $options = array("Database"=>$sqlserverAuthentication["database"], "CharacterSet" =>"UTF-8", "UID"=>$sqlserverAuthentication["username"], "PWD"=>$sqlserverAuthentication["password"]);
         }
 
+        /*
         if (($this->databaseType == 'sqlServer') || ($this->databaseType == 'both')) {
             $this->sqlserverConnection = sqlsrv_connect($host, $options);
         }
+        */
     }
 
     function CloseConnection(){
         if (($this->databaseType == 'mySql') || ($this->databaseType == 'both')) {
-            mysql_close($this->mysqlConnection);
+            mysqli_close($this->mysqlConnection);
         }
 
+        /*
         if (($this->databaseType == 'sqlServer') || ($this->databaseType == 'both')) {
             sqlsrv_close($this->sqlserverConnection);
         }
+        */
     }
 
 }
