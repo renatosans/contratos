@@ -59,7 +59,7 @@ class LoginDAO{
         $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new LoginDTO();
         $dto->id        = $record['id'];
@@ -67,7 +67,7 @@ class LoginDAO{
         $dto->nome      = $record['nome'];
         $dto->usuario   = $record['usuario'];
         $dto->senha     = $record['senha'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -89,7 +89,7 @@ class LoginDAO{
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new LoginDTO();
             $dto->id        = $record['id'];
             $dto->idExterno = $record['idExterno'];
@@ -100,7 +100,7 @@ class LoginDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }
