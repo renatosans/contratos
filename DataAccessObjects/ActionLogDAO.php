@@ -19,7 +19,7 @@ class ActionLogDAO{
 
         $query = "INSERT INTO historico VALUES (NULL, ".$dto->login_id.", '".$dto->data." ".$dto->hora."', '".$dto->transacao."', ".$tipoAgregacao.", ".$idAgregacao.", '".$dto->tipoObjeto."', ".$dto->idObjeto.", '".$dto->propriedade."', '".$dto->valor."');";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -35,7 +35,7 @@ class ActionLogDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM historico WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -49,7 +49,7 @@ class ActionLogDAO{
 
         $fieldList = "id, login_id, DATE(data) as data, TIME_FORMAT(TIME(data), '%H:%i') as hora, transacao, tipoAgregacao, idAgregacao, tipoObjeto, idObjeto, propriedade, valor";
         $query = "SELECT ".$fieldList." FROM historico WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -83,7 +83,7 @@ class ActionLogDAO{
         $query = "SELECT ".$fieldList." FROM historico WHERE ".$filter;
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM historico";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
