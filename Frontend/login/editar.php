@@ -37,6 +37,12 @@ if ( isset($_REQUEST["id"]) && ($_REQUEST["id"] != 0)) {
 
 ?>
 
+    <script type="text/javascript" >
+        $(document).ready(function() {
+            $('form').validate({rules: { nome:"required", usuario:"required", senha:"required" }});
+        });
+    </script>
+
     <h1>Administração - Login</h1>
     <form name="fDados" action="Frontend/<?php echo $currentDir; ?>/acao.php" method="post" >
         <input type="hidden" name="acao" value="store" />
