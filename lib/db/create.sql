@@ -136,6 +136,8 @@ CREATE TABLE IF NOT EXISTS `addOnContratos`.`login` (
   `nome` VARCHAR(50) NOT NULL,
   `usuario` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
+  `foto` BLOB NOT NULL,
+  `formatoImagem` VARCHAR(45) NULL,
   `removido` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
