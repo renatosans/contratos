@@ -5,7 +5,7 @@
         $db_auth_options = Array(
             "host"=>"localhost",
             "user"=>"root",
-            "password"=>"",
+            "password"=>"p@ssw0rd",
             "database"=>"addoncontratos"
         );
 
