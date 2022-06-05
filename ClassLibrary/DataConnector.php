@@ -7,7 +7,7 @@ class DataConnector{
 
 
     # constructor
-    function DataConnector($databaseType){
+    function __construct($databaseType){
         $this->databaseType = $databaseType;
     }
 
