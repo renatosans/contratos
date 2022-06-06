@@ -17,15 +17,15 @@ class ConfigDAO{
         if ($dto->id > 0)
             $query = "UPDATE config SET nomeParametro = '".$dto->nomeParametro."', descricao = '".$dto->descricao."', tipoParametro = '".$dto->tipoParametro."', valor = '".$dto->valor."' WHERE id = ".$dto->id.";";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -33,10 +33,10 @@ class ConfigDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM config WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -46,15 +46,15 @@ class ConfigDAO{
         $dto = null;
 
         $query = "SELECT * FROM config WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new ConfigDTO();
         $dto->id             = $record['id'];
@@ -62,7 +62,7 @@ class ConfigDAO{
         $dto->descricao      = $record['descricao'];
         $dto->tipoParametro  = $record['tipoParametro'];
         $dto->valor          = $record['valor'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -73,16 +73,16 @@ class ConfigDAO{
         $query = "SELECT * FROM config WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM config";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new ConfigDTO();
             $dto->id             = $record['id'];
             $dto->nomeParametro  = $record['nomeParametro'];
@@ -93,7 +93,7 @@ class ConfigDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

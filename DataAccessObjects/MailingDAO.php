@@ -20,15 +20,15 @@ class MailingDAO{
         if ($dto->id > 0)
             $query = "UPDATE mailing SET businessPartnerCode = '".$dto->businessPartnerCode."', businessPartnerName = '".$dto->businessPartnerName."', contrato_id = ".$dto->contrato_id.", subContrato_id = ".$dto->subContrato_id.", diaFaturamento = ".$dto->diaFaturamento.", destinatarios = '".$dto->destinatarios."', enviarDemonstrativo = ".$enviarDemonstrativo.", ultimoEnvio = ".$ultimoEnvio." WHERE id = ".$dto->id;
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -36,10 +36,10 @@ class MailingDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM mailing WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -49,15 +49,15 @@ class MailingDAO{
         $dto = null;
 
         $query = "SELECT * FROM mailing WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new MailingDTO();
         $dto->id                   = $record['id'];
@@ -69,7 +69,7 @@ class MailingDAO{
         $dto->destinatarios        = $record['destinatarios'];
         $dto->enviarDemonstrativo  = $record['enviarDemonstrativo'];
         $dto->ultimoEnvio          = $record['ultimoEnvio'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -80,16 +80,16 @@ class MailingDAO{
         $query = "SELECT * FROM mailing WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM mailing";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new MailingDTO();
             $dto->id                   = $record['id'];
             $dto->businessPartnerCode  = $record['businessPartnerCode'];
@@ -104,7 +104,7 @@ class MailingDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

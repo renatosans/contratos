@@ -17,16 +17,16 @@ class PartReplacementDAO{
         $query = "SELECT DATE(CHAM.dataAbertura) as dataAbertura, DESP.* FROM despesaChamado DESP JOIN chamadoServico CHAM ON DESP.codigoChamado = CHAM.id";
         if (!empty($filter)) $query = $query." WHERE ".$filter;
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new PartReplacementDTO();
             $dto->dataChamado        = $record['dataAbertura'];
             $dto->codigoChamado      = $record['codigoChamado'];
@@ -39,7 +39,7 @@ class PartReplacementDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

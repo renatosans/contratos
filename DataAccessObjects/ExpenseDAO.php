@@ -23,15 +23,15 @@ class ExpenseDAO{
         if ($dto->id > 0)
             $query = "UPDATE despesaChamado SET codigoChamado = ".$codigoChamado.", codigoInsumo = ".$codigoInsumo.", codigoItem = '".$dto->codigoItem."', nomeItem = '".$dto->nomeItem."', quantidade = ".$dto->quantidade.", medicaoInicial = ".$dto->medicaoInicial.", medicaoFinal = ".$dto->medicaoFinal.", totalDespesa = ".$dto->totalDespesa.", observacao = '".$dto->observacao."' WHERE id = ".$dto->id.";";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -39,10 +39,10 @@ class ExpenseDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM despesaChamado WHERE id = ".$id.";";
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -52,15 +52,15 @@ class ExpenseDAO{
         $dto = null;
 
         $query = "SELECT * FROM despesaChamado WHERE id = ".$id.";";
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new ExpenseDTO();
         $dto->id                 = $record['id'];
@@ -73,7 +73,7 @@ class ExpenseDAO{
         $dto->medicaoFinal       = $record['medicaoFinal'];
         $dto->totalDespesa       = $record['totalDespesa'];
         $dto->observacao         = $record['observacao'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -84,16 +84,16 @@ class ExpenseDAO{
         $query = "SELECT * FROM despesaChamado WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT * FROM despesaChamado;";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new ExpenseDTO();
             $dto->id                 = $record['id'];
             $dto->codigoChamado      = $record['codigoChamado'];
@@ -109,7 +109,7 @@ class ExpenseDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

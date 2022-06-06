@@ -17,15 +17,15 @@ class ContractChargeDAO{
         if ($dto->id > 0)
             $query = "UPDATE cobranca SET contrato_id = ".$dto->codigoContrato.", subContrato_id = ".$dto->codigoSubContrato.", contador_id = ".$dto->codigoContador.", modalidadeMedicao = ".$dto->modalidadeMedicao.", fixo = ".$dto->fixo.", variavel = ".$dto->variavel.", franquia = ".$dto->franquia.", individual = ".$dto->individual." WHERE id = ".$dto->id.";";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -33,10 +33,10 @@ class ContractChargeDAO{
 
     function DeleteRecord($id){
         $query = "UPDATE cobranca SET removido = 1 WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -46,15 +46,15 @@ class ContractChargeDAO{
         $dto = null;
 
         $query = "SELECT * FROM cobranca WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new ContractChargeDTO();
         $dto->id                = $record['id'];
@@ -66,7 +66,7 @@ class ContractChargeDAO{
         $dto->variavel          = $record['variavel'];
         $dto->franquia          = $record['franquia'];
         $dto->individual        = $record['individual'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -78,16 +78,16 @@ class ContractChargeDAO{
         $query = "SELECT * FROM cobranca WHERE removido = 0 AND ".$filter;
         if (empty($filter)) $query = "SELECT * FROM cobranca WHERE removido = 0";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new ContractChargeDTO();
             $dto->id                = $record['id'];
             $dto->codigoContrato    = $record['contrato_id'];
@@ -102,7 +102,7 @@ class ContractChargeDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

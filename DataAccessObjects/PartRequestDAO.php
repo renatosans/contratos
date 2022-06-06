@@ -17,15 +17,15 @@ class PartRequestDAO{
         if ($dto->id > 0)
             $query = "UPDATE pedidoPecaReposicao SET chamadoServico_id = ".$dto->codigoChamadoServico.", data = '".$dto->data." ".$dto->hora."', destinatarios = '".$dto->destinatarios."' WHERE id = ".$dto->id.";";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -33,10 +33,10 @@ class PartRequestDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM pedidoPecaReposicao WHERE id = ".$id.";";
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -47,15 +47,15 @@ class PartRequestDAO{
 
         $fieldList = "id, chamadoServico_id, DATE(data) as data, TIME_FORMAT(TIME(data), '%H:%i') as hora, destinatarios";
         $query = "SELECT ".$fieldList." FROM pedidoPecaReposicao WHERE id = ".$id.";";
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new PartRequestDTO();
         $dto->id                       = $record['id'];
@@ -63,7 +63,7 @@ class PartRequestDAO{
         $dto->data                     = $record['data'];
         $dto->hora                     = $record['hora'];
         $dto->destinatarios            = $record['destinatarios'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -75,16 +75,16 @@ class PartRequestDAO{
         $query = "SELECT ".$fieldList." FROM pedidoPecaReposicao WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM pedidoPecaReposicao;";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new PartRequestDTO();
             $dto->id                       = $record['id'];
             $dto->codigoChamadoServico     = $record['chamadoServico_id'];
@@ -95,7 +95,7 @@ class PartRequestDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

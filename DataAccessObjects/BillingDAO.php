@@ -17,15 +17,15 @@ class BillingDAO{
         if ($dto->id > 0)
             $query = "UPDATE faturamento SET businessPartnerCode = '".$dto->businessPartnerCode."', businessPartnerName = '".$dto->businessPartnerName."', mailing_id = ".$dto->mailing_id.", dataInicial = '".$dto->dataInicial."', dataFinal = '".$dto->dataFinal."', mesReferencia = '".$dto->mesReferencia."', anoReferencia = '".$dto->anoReferencia."', multaRecisoria = '".$dto->multaRecisoria."', acrescimoDesconto = ".$dto->acrescimoDesconto.", total = ".$dto->total.", obs = '".$dto->obs."', incluirRelatorio = '".$dto->incluirRelatorio."' WHERE id = ".$dto->id;
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -33,10 +33,10 @@ class BillingDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM faturamento WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -47,15 +47,15 @@ class BillingDAO{
 
         $fieldList = "id, businessPartnerCode, businessPartnerName, mailing_id, DATE(dataInicial) as dataInicial, DATE(dataFinal) as dataFinal, mesReferencia, anoReferencia, multaRecisoria, acrescimoDesconto, total, obs, incluirRelatorio";
         $query = "SELECT ".$fieldList." FROM faturamento WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new BillingDTO();
         $dto->id                  = $record['id'];
@@ -71,7 +71,7 @@ class BillingDAO{
         $dto->total               = $record['total'];
         $dto->obs                 = $record['obs'];
         $dto->incluirRelatorio    = $record['incluirRelatorio'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -83,16 +83,16 @@ class BillingDAO{
         $query = "SELECT ".$fieldList." FROM faturamento WHERE ".$filter;
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM faturamento";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new BillingDTO();
             $dto->id                  = $record['id'];
             $dto->businessPartnerCode = $record['businessPartnerCode'];
@@ -111,7 +111,7 @@ class BillingDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

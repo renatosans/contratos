@@ -17,15 +17,15 @@ class IndirectCostDAO{
         if ($dto->id > 0)
             $query = "UPDATE custoIndireto SET data = '".$dto->data." ".$dto->hora."', solicitante = ".$dto->solicitante.", infoSolicitante = '".$dto->infoSolicitante."', codigoInsumo = ".$dto->codigoInsumo.", medicaoInicial = ".$dto->medicaoInicial.", medicaoFinal = ".$dto->medicaoFinal.", total = ".$dto->total.", observacao = '".$dto->observacao."' WHERE id = ".$dto->id.";";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -33,10 +33,10 @@ class IndirectCostDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM custoIndireto WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -47,15 +47,15 @@ class IndirectCostDAO{
 
         $fieldList = "id, DATE(data) as data, TIME_FORMAT(TIME(data), '%H:%i') as hora, solicitante, infoSolicitante, codigoInsumo, medicaoInicial, medicaoFinal, total, observacao";
         $query = "SELECT ".$fieldList." FROM custoIndireto WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new IndirectCostDTO();
         $dto->id              = $record['id'];
@@ -68,7 +68,7 @@ class IndirectCostDAO{
         $dto->medicaoFinal    = $record['medicaoFinal'];
         $dto->total           = $record['total'];
         $dto->observacao      = $record['observacao'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -80,16 +80,16 @@ class IndirectCostDAO{
         $query = "SELECT ".$fieldList." FROM custoIndireto WHERE ".$filter;
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM custoIndireto";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new IndirectCostDTO();
             $dto->id              = $record['id'];
             $dto->data            = $record['data'];
@@ -105,7 +105,7 @@ class IndirectCostDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }
@@ -115,18 +115,18 @@ class IndirectCostDAO{
         $serviceCallArray = array();
 
         $query = "SELECT * FROM despesaDistribuida WHERE custoIndireto_id=".$indirectCostId;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $serviceCallArray;
 
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             array_push($serviceCallArray, $record['chamadoServico_id']);
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $serviceCallArray;
     }
@@ -136,18 +136,18 @@ class IndirectCostDAO{
         $idArray = array();
 
         $query = "SELECT * FROM despesaDistribuida WHERE ".$filter;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $idArray;
 
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             array_push($idArray, $record['custoIndireto_id']);
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $idArray;
     }
@@ -155,10 +155,10 @@ class IndirectCostDAO{
     // Associa um chamado ao custo indireto
     function AddDistributedExpense($serviceCallId, $indirectCostId) {
         $query = "INSERT INTO despesaDistribuida VALUES (".$serviceCallId.", ".$indirectCostId.");";
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -167,10 +167,10 @@ class IndirectCostDAO{
     // Remove um chamado associado ao custo indireto
     function RemoveDistributedExpense($serviceCallId, $indirectCostId) {
         $query = "DELETE FROM despesaDistribuida WHERE chamadoServico_id = ".$serviceCallId." AND custoIndireto_id = ".$indirectCostId;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;

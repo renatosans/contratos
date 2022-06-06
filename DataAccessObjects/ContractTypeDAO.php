@@ -15,15 +15,15 @@ class ContractTypeDAO{
         // Monta a query
         $query = "INSERT INTO tipocontrato VALUES (NULL, '".$dto->sigla."', '".$dto->nome."', ".$dto->permiteBonus.");";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -31,10 +31,10 @@ class ContractTypeDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM tipocontrato WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -44,22 +44,22 @@ class ContractTypeDAO{
         $dto = null;
 
         $query = "SELECT * FROM tipocontrato WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new ContractTypeDTO();
         $dto->id           = $record['id'];
         $dto->sigla        = $record['sigla'];
         $dto->nome         = $record['nome'];
         $dto->permiteBonus = $record['bonus'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -70,16 +70,16 @@ class ContractTypeDAO{
         $query = "SELECT * FROM tipocontrato WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM tipocontrato";
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new ContractTypeDTO();
             $dto->id           = $record['id'];
             $dto->sigla        = $record['sigla'];
@@ -89,7 +89,7 @@ class ContractTypeDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

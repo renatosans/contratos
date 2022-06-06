@@ -22,15 +22,15 @@ class ContractDAO{
         if ($dto->id > 0)
             $query = "UPDATE contrato SET numero = '".$dto->numero."', pn = '".$dto->pn."', divisao = '".$dto->divisao."', contato = ".$dto->contato.", status = ".$dto->status.", categoria = ".$dto->categoria.", assinatura = '".$dto->dataAssinatura."', encerramento = '".$dto->dataEncerramento."', inicioAtendimento = '".$dto->inicioAtendimento."', fimAtendimento = '".$dto->fimAtendimento."', primeiraParcela = '".$dto->primeiraParcela."', parcelaAtual = ".$dto->parcelaAtual.", mesReferencia = ".$dto->mesReferencia.", anoReferencia = ".$dto->anoReferencia.", quantidadeParcelas = ".$dto->quantidadeParcelas.", global = ".$dto->global.", vendedor = ".$dto->vendedor.", diaVencimento = ".$dto->diaVencimento.", referencialVencimento = ".$dto->referencialVencimento.", diaLeitura = ".$dto->diaLeitura.", referencialLeitura = ".$dto->referencialLeitura.", indicesReajuste_id = ".$dto->indiceReajuste.", dataRenovacao = ".$dataRenovacao.", dataReajuste = ".$dataReajuste.", valorImplantacao = ".$dto->valorImplantacao.", quantParcelasImplantacao = ".$dto->quantParcelasImplantacao.", obs = '".$dto->obs."' WHERE id = ".$dto->id.";";
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -38,10 +38,10 @@ class ContractDAO{
 
     function DeleteRecord($id){
         $query = "UPDATE contrato SET removido = 1 WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -55,15 +55,15 @@ class ContractDAO{
         $fieldList = $fieldList."global, vendedor, diaVencimento, referencialVencimento, diaLeitura, referencialLeitura, indicesReajuste_id, DATE(dataRenovacao) as dataRenovacao, dataReajuste, valorImplantacao, quantParcelasImplantacao, obs";
 
         $query = "SELECT ".$fieldList." FROM contrato WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new ContractDTO();
         $dto->id                        = $record['id'];
@@ -94,7 +94,7 @@ class ContractDAO{
         $dto->valorImplantacao          = $record['valorImplantacao'];
         $dto->quantParcelasImplantacao  = $record['quantParcelasImplantacao'];
         $dto->obs                       = $record['obs'];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -129,16 +129,16 @@ class ContractDAO{
     function FetchArray($query){
         $dtoArray = array();
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new ContractDTO();
             $dto->id                        = $record['id'];
             $dto->numero                    = $record['numero'];
@@ -172,7 +172,7 @@ class ContractDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }
@@ -212,20 +212,20 @@ class ContractDAO{
 
         $fieldList = "DATE_FORMAT(inicioAtendimento,'%d/%m/%Y') as inicioAtendimento, DATE_FORMAT(fimAtendimento,'%d/%m/%Y') as fimAtendimento, CONCAT(parcelaAtual, '/', quantidadeParcelas) as parcelaAtual";
         $query = "SELECT ".$fieldList." FROM contrato WHERE id = ".$contractId;
-        $recordSet = mysql_query($query, $mysqlConnection);
+        $recordSet = mysqli_query($query, $mysqlConnection);
         if (!$recordSet) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return null;
 
-        while( $record = mysql_fetch_array($recordSet) ) {
+        while( $record = mysqli_fetch_array($recordSet) ) {
             $period['inicioAtendimento'] = $record['inicioAtendimento'];
             $period['fimAtendimento']    = $record['fimAtendimento'];
             $period['parcelaAtual']      = $record['parcelaAtual'];
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $period;
     }

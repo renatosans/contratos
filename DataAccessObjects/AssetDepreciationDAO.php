@@ -18,15 +18,15 @@ class AssetDepreciationDAO{
         if ($dto->id > 0)
             $query = "UPDATE depreciacao SET ativo = ".$dto->ativo.", mesReferencia = ".$dto->mesReferencia.", anoReferencia = ".$dto->anoReferencia.", intensidadeDesgaste = ".$dto->intensidadeDesgaste."  WHERE id = ".$dto->id;
 
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
         if ($result) {
-            $insertId = mysql_insert_id($this->mysqlConnection);
+            $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
             return $insertId;
         }
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return null;
@@ -34,10 +34,10 @@ class AssetDepreciationDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM depreciacao WHERE id = ".$id;
-        $result = mysql_query($query, $this->mysqlConnection);
+        $result = mysqli_query($query, $this->mysqlConnection);
 
         if ((!$result) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/>';
         }
         return $result;
@@ -47,15 +47,15 @@ class AssetDepreciationDAO{
         $dto = null;
 
         $query = "SELECT * FROM depreciacao WHERE id = ".$id;
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount != 1) return null;
 
-        $record = mysql_fetch_array($recordSet);
+        $record = mysqli_fetch_array($recordSet);
         if (!$record) return null;
         $dto = new AssetDepreciationDTO();
         $dto->id                  = $record["id"];
@@ -63,7 +63,7 @@ class AssetDepreciationDAO{
         $dto->mesReferencia       = $record["mesReferencia"];
         $dto->anoReferencia       = $record["anoReferencia"];
         $dto->intensidadeDesgaste = $record["intensidadeDesgaste"];
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dto;
     }
@@ -74,17 +74,17 @@ class AssetDepreciationDAO{
         $query  = "SELECT * FROM depreciacao";
         if (isset($filter) && (!empty($filter))) $query = $query." WHERE ".$filter;
 
-        $recordSet = mysql_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($query, $this->mysqlConnection);
         if ((!$recordSet) && ($this->showErrors)) {
-            print_r(mysql_error());
+            print_r(mysqli_error());
             echo '<br/><br/>';
         }
 
-        $recordCount = mysql_num_rows($recordSet);
+        $recordCount = mysqli_num_rows($recordSet);
         if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = mysql_fetch_array($recordSet) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new AssetDepreciationDTO();
             $dto->id                  = $record["id"];
             $dto->ativo               = $record["ativo"];
@@ -95,7 +95,7 @@ class AssetDepreciationDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        mysql_free_result($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }
