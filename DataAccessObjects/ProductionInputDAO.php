@@ -6,7 +6,7 @@ class ProductionInputDAO{
     var $showErrors;
 
     #construtor
-    function ProductionInputDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

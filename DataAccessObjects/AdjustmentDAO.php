@@ -6,7 +6,7 @@ class AdjustmentDAO{
     var $showErrors;
 
     #construtor
-    function AdjustmentDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

@@ -6,7 +6,7 @@ class PartnerAddressDAO{
     var $showErrors;
 
     #construtor
-    function PartnerAddressDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

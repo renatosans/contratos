@@ -6,7 +6,7 @@ class EquipmentReadingDAO {
     var $showErrors;
 
     #construtor
-    function EquipmentReadingDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

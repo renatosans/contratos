@@ -6,7 +6,7 @@ class SmtpServerDAO{
     var $showErrors;
 
     #construtor
-    function SmtpServerDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

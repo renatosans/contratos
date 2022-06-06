@@ -7,7 +7,7 @@ class IndustryDAO{
     var $showErrors;
 
     #construtor
-    function IndustryDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

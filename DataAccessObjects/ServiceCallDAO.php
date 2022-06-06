@@ -6,7 +6,7 @@ class ServiceCallDAO{
     var $showErrors;
 
     #construtor
-    function ServiceCallDAO($mysqlConnection) {
+    function __construct($mysqlConnection) {
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

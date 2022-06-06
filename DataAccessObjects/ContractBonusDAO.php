@@ -6,7 +6,7 @@ class ContractBonusDAO{
     var $showErrors;
 
     #construtor
-    function ContractBonusDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

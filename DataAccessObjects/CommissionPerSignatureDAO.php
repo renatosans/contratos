@@ -6,7 +6,7 @@ class CommissionPerSignatureDAO{
     var $showErrors;
 
     #construtor
-    function CommissionPerSignatureDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

@@ -6,7 +6,7 @@ class ManufacturerDAO{
     var $showErrors;
 
     #construtor
-    function ManufacturerDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

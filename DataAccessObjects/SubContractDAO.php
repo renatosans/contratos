@@ -6,7 +6,7 @@ class SubContractDAO{
     var $showErrors;
 
     #construtor
-    function SubContractDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

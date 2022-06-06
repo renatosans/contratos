@@ -6,7 +6,7 @@ class EquipmentDAO{
     var $showErrors;
 
     #construtor
-    function EquipmentDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

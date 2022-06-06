@@ -6,7 +6,7 @@ class PartReplacementDAO{
     var $showErrors;
 
     #construtor
-    function PartReplacementDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

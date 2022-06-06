@@ -6,7 +6,7 @@ class ReadingDAO{
     var $showErrors;
 
     #construtor
-    function ReadingDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

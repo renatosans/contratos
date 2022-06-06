@@ -6,7 +6,7 @@ class AccessoriesDAO{
     var $showErrors;
 
     #construtor
-    function AccessoriesDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

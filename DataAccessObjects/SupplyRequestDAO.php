@@ -6,7 +6,7 @@ class SupplyRequestDAO{
     var $showErrors;
 
     #construtor
-    function SupplyRequestDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

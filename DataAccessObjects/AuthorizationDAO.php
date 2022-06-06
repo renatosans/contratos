@@ -6,7 +6,7 @@ class AuthorizationDAO{
     var $showErrors;
 
     #construtor
-    function AuthorizationDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

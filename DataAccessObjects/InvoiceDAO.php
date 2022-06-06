@@ -6,7 +6,7 @@ class InvoiceDAO{
     var $showErrors;
 
     #construtor
-    function InvoiceDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

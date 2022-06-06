@@ -6,7 +6,7 @@ class BusinessPartnerDAO{
     var $showErrors;
 
     #construtor
-    function BusinessPartnerDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

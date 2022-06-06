@@ -6,7 +6,7 @@ class EmployeeDAO{
     var $showErrors;
 
     #construtor
-    function EmployeeDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

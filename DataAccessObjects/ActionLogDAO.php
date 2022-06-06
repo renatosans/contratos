@@ -6,7 +6,7 @@ class ActionLogDAO{
     var $showErrors;
 
     #construtor
-    function ActionLogDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

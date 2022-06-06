@@ -6,7 +6,7 @@ class ContractDAO{
     var $showErrors;
 
     #construtor
-    function ContractDAO($mysqlConnection){
+    function __construct($mysqlConnection){
         $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }

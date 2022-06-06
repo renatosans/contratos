@@ -6,7 +6,7 @@ class LaborExpenseDAO {
     var $showErrors;
 
     #construtor
-    function LaborExpenseDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }
