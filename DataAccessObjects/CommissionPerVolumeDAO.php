@@ -17,7 +17,7 @@ class CommissionPerVolumeDAO{
         if ($dto->id > 0)
             $query = "UPDATE regraComissaoVolume SET categoriaContrato = ".$dto->categoriaContrato.", quantContratosDe = ".$dto->quantContratosDe.", quantContratosAte = ".$dto->quantContratosAte.", valorFaturamentoDe = ".$dto->valorFaturamentoDe.", valorFaturamentoAte = ".$dto->valorFaturamentoAte.", comissao = ".$dto->comissao." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class CommissionPerVolumeDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM regraComissaoVolume WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -47,7 +47,7 @@ class CommissionPerVolumeDAO{
 
         $fieldList = "id, categoriaContrato, quantContratosDe, quantContratosAte, valorFaturamentoDe, valorFaturamentoAte, comissao";
         $query = "SELECT ".$fieldList." FROM regraComissaoVolume WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -77,7 +77,7 @@ class CommissionPerVolumeDAO{
         $query = "SELECT ".$fieldList." FROM regraComissaoVolume WHERE ".$filter;
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM regraComissaoVolume";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

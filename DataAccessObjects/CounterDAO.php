@@ -17,7 +17,7 @@ class CounterDAO{
         if ($dto->id > 0)
             $query = "UPDATE contador SET nome = '".$dto->nome."' WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class CounterDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM contador WHERE id = ".$id.";";
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -46,7 +46,7 @@ class CounterDAO{
         $dto = null;
 
         $query = "SELECT * FROM contador WHERE id = ".$id.";";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -70,7 +70,7 @@ class CounterDAO{
         $query = "SELECT * FROM contador WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT * FROM contador;";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

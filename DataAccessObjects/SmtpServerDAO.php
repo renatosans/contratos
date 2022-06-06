@@ -17,7 +17,7 @@ class SmtpServerDAO{
         if ($dto->id > 0)
             $query = "UPDATE smtpServer SET nome = '".$dto->nome."', endereco = '".$dto->endereco."', porta = ".$dto->porta.", usuario = '".$dto->usuario."', senha = '".$dto->senha."', requiresTLS = '".$dto->requiresTLS."', defaultServer = '".$dto->defaultServer."' WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class SmtpServerDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM smtpServer WHERE id = ".$id.";";
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -46,7 +46,7 @@ class SmtpServerDAO{
         $dto = null;
 
         $query = "SELECT * FROM smtpServer WHERE id = ".$id.";";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -76,7 +76,7 @@ class SmtpServerDAO{
         $query = "SELECT * FROM smtpServer WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT * FROM smtpServer;";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

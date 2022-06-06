@@ -18,7 +18,7 @@ class ServiceStatisticsDAO{
         if ($dto->id > 0)
             $query = "UPDATE estatisticaAtendimento SET mesReferencia = ".$dto->mesReferencia.", anoReferencia = ".$dto->anoReferencia.", quantidadeChamados = ".$dto->quantidadeChamados.", tempoEmAtendimento = '".$dto->tempoEmAtendimento."'  WHERE id = ".$dto->id;
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -34,7 +34,7 @@ class ServiceStatisticsDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM estatisticaAtendimento WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -47,7 +47,7 @@ class ServiceStatisticsDAO{
         $dto = null;
 
         $query = "SELECT id, mesReferencia, anoReferencia, quantidadeChamados, time_format(tempoEmAtendimento, '%H:%i') tempoEmAtendimento, time_to_sec(tempoEmAtendimento) totalEmSegundos FROM estatisticaAtendimento WHERE mesReferencia = ".$month." AND anoReferencia = ".$year;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -75,7 +75,7 @@ class ServiceStatisticsDAO{
         $query  = "SELECT * FROM estatisticaAtendimento";
         if (isset($filter) && (!empty($filter))) $query = $query." WHERE ".$filter;
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -109,7 +109,7 @@ class ServiceStatisticsDAO{
         $query =  "SELECT SUM(1) AS quantidadeChamados, SEC_TO_TIME(SUM(TIME_TO_SEC(tempoAtendimento))) AS tempoTotalAtendimento FROM addoncontratos.chamadoservico WHERE ";
         $query .= "YEAR(dataAtendimento) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND MONTH(dataAtendimento) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -128,7 +128,7 @@ class ServiceStatisticsDAO{
         $dto = null;
 
         $query = "SELECT * FROM estatisticaAtendimento WHERE anoReferencia = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND mesReferencia = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

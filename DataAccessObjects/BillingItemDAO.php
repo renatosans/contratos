@@ -14,7 +14,7 @@ class BillingItemDAO{
     function StoreRecord($dto){
         $query = "INSERT INTO itemFaturamento VALUES (NULL, ".$dto->codigoFaturamento.", ".$dto->contrato_id.", ".$dto->subContrato_id.", ".$dto->codigoCartaoEquipamento.", '".$dto->tipoLocacao."', ".$dto->counterId.", '".$dto->dataLeitura."', ".$dto->medicaoFinal.", ".$dto->medicaoInicial.", ".$dto->consumo.", ".$dto->ajuste.", ".$dto->franquia.", ".$dto->excedente.", ".$dto->tarifaSobreExcedente.", ".$dto->fixo.", ".$dto->variavel.", ".$dto->total.", ".$dto->acrescimoDesconto.");";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -30,7 +30,7 @@ class BillingItemDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM itemFaturamento WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -44,7 +44,7 @@ class BillingItemDAO{
 
         $fieldList = "id, codigoFaturamento, contrato_id, subContrato_id, codigoCartaoEquipamento, tipoLocacao, counterId, DATE_FORMAT(dataLeitura,'%d/%m/%Y') as dataLeitura, medicaoFinal, medicaoInicial, consumo, ajuste, franquia, excedente, tarifaSobreExcedente, fixo, variavel, total, acrescimoDesconto";
         $query = "SELECT ".$fieldList." FROM itemFaturamento WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -102,7 +102,7 @@ class BillingItemDAO{
     function FetchArray($query){
         $dtoArray = array();
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

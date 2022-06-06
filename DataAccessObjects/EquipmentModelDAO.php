@@ -17,7 +17,7 @@ class EquipmentModelDAO{
         if ($dto->id > 0)
             $query = "UPDATE modeloEquipamento SET modelo = '".$dto->modelo."', fabricante = ".$dto->fabricante." WHERE id = ".$dto->id;
 
-       $result = mysqli_query($query, $this->mysqlConnection);
+       $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class EquipmentModelDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM modeloEquipamento WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -46,7 +46,7 @@ class EquipmentModelDAO{
         $dto = null;
 
         $query = "SELECT * FROM modeloEquipamento WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -71,7 +71,7 @@ class EquipmentModelDAO{
         $query = "SELECT * FROM modeloEquipamento WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM modeloEquipamento";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

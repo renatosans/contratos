@@ -15,7 +15,7 @@ class ContractItemDAO{
         // Monta a query
         $query = "INSERT INTO itens VALUES (".$dto->codigoCartaoEquipamento.", '".$dto->businessPartnerCode."', ".$dto->codigoContrato.", ".$dto->codigoSubContrato.");";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->codigoCartaoEquipamento;
@@ -31,7 +31,7 @@ class ContractItemDAO{
 
     function DeleteRecord($equipmentCode){
         $query = "DELETE FROM itens WHERE codigoCartaoEquipamento = ".$equipmentCode;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -44,7 +44,7 @@ class ContractItemDAO{
         $dto = null;
 
         $query = "SELECT * FROM itens WHERE codigoCartaoEquipamento = ".$equipmentCode;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -70,7 +70,7 @@ class ContractItemDAO{
         $query = "SELECT * FROM itens WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM itens";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

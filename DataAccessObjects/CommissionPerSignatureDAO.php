@@ -17,7 +17,7 @@ class CommissionPerSignatureDAO{
         if ($dto->id > 0)
             $query = "UPDATE regraComissaoAssinatura SET segmento = ".$dto->segmento.", dataAssinaturaDe = '".$dto->dataAssinaturaDe."', dataAssinaturaAte = '".$dto->dataAssinaturaAte."', comissao = ".$dto->comissao." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class CommissionPerSignatureDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM regraComissaoAssinatura WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -47,7 +47,7 @@ class CommissionPerSignatureDAO{
 
         $fieldList = "id, segmento, DATE(dataAssinaturaDe) as dataAssinaturaDe, DATE(dataAssinaturaAte) as dataAssinaturaAte, comissao";
         $query = "SELECT ".$fieldList." FROM regraComissaoAssinatura WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -75,7 +75,7 @@ class CommissionPerSignatureDAO{
         $query = "SELECT ".$fieldList." FROM regraComissaoAssinatura WHERE ".$filter;
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM regraComissaoAssinatura";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

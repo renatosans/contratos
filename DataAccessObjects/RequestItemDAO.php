@@ -23,7 +23,7 @@ class RequestItemDAO{
         if ($dto->id > 0)
             $query = "UPDATE solicitacaoItem SET pedidoConsumivel_id = ".$codigoPedidoConsumivel.", pedidoPecaReposicao_id = ".$codigoPedidoPecaRepos.", codigoItem = '".$dto->codigoItem."', nomeItem = '".$dto->nomeItem."', quantidade = ".$dto->quantidade.", total = ".$dto->total." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -39,7 +39,7 @@ class RequestItemDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM solicitacaoItem WHERE id = ".$id.";";
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -53,7 +53,7 @@ class RequestItemDAO{
 
         $fieldList = "id, pedidoConsumivel_id, pedidoPecaReposicao_id, codigoItem, nomeItem, quantidade, total";
         $query = "SELECT ".$fieldList." FROM solicitacaoItem WHERE id = ".$id.";";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -83,7 +83,7 @@ class RequestItemDAO{
         $query = "SELECT ".$fieldList." FROM solicitacaoItem WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM solicitacaoItem;";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

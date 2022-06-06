@@ -22,7 +22,7 @@ class ReadingDAO{
         if ($dto->id > 0)
             $query = "UPDATE leitura SET codigoCartaoEquipamento = '".$dto->codigoCartaoEquipamento."', chamadoServico_id = ".$codigoChamado.", consumivel_id = ".$codigoConsumivel.", data = '".$dto->data." ".$dto->hora."', contador_id = '".$dto->codigoContador."', contagem = ".$dto->contagem.", ajusteContagem = '".$dto->ajusteContagem."', assinaturaDatacopy = '".$dto->assinaturaDatacopy."', assinaturaCliente = '".$dto->assinaturaCliente."', obs = '".$dto->observacao."', origemLeitura_id = ".$dto->origemLeitura.", formaLeitura_id = ".$dto->formaLeitura.", reset = ".$dto->reset." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -38,7 +38,7 @@ class ReadingDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM leitura WHERE id = ".$id.";";
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -52,7 +52,7 @@ class ReadingDAO{
 
         $fieldList = "id, codigoCartaoEquipamento, chamadoServico_id, consumivel_id, DATE(data) as data, TIME_FORMAT(TIME(data), '%H:%i') as hora, contador_id, contagem, ajusteContagem, assinaturaDatacopy, assinaturaCliente, obs, origemLeitura_id, formaLeitura_id, reset";
         $query = "SELECT ".$fieldList." FROM leitura WHERE id = ".$id.";";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -89,7 +89,7 @@ class ReadingDAO{
         $fieldList = "id, codigoCartaoEquipamento, chamadoServico_id, consumivel_id, DATE(data) as data, TIME_FORMAT(TIME(data), '%H:%i') as hora, contador_id, contagem, ajusteContagem, assinaturaDatacopy, assinaturaCliente, obs, origemLeitura_id, formaLeitura_id, reset";
         $query = "SELECT ".$fieldList." FROM leitura";
         if (isset($filter) && (!empty($filter))) $query = $query." WHERE ".$filter;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -129,7 +129,7 @@ class ReadingDAO{
         $readingSourceArray = array();
 
         $query = "SELECT * FROM origemLeitura";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -150,7 +150,7 @@ class ReadingDAO{
         $readingKindArray = array();
 
         $query = "SELECT * FROM formaLeitura";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

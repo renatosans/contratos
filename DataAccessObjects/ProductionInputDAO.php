@@ -17,7 +17,7 @@ class ProductionInputDAO{
         if ($dto->id > 0)
             $query = "UPDATE insumo SET descricao = '".$dto->descricao."', tipoInsumo = ".$dto->tipoInsumo.", valor = ".$dto->valor." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class ProductionInputDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM insumo WHERE id = ".$id.";";
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -46,7 +46,7 @@ class ProductionInputDAO{
         $dto = null;
 
         $query = "SELECT * FROM insumo WHERE id = ".$id.";";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -72,7 +72,7 @@ class ProductionInputDAO{
         $query = "SELECT * FROM insumo WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT * FROM insumo;";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -102,7 +102,7 @@ class ProductionInputDAO{
         $inputTypeArray = array();
 
         $query = "SELECT * FROM tipoInsumo";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -124,7 +124,7 @@ class ProductionInputDAO{
         $unitArray = array();
 
         $query = "SELECT * FROM tipoInsumo";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

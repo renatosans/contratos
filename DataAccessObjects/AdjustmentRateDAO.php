@@ -17,7 +17,7 @@ class AdjustmentRateDAO{
         if ($dto->id > 0)
             $query = "UPDATE indicesReajuste SET sigla = '".$dto->sigla."', nome = '".$dto->nome."', aliquota = ".$dto->aliquota." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class AdjustmentRateDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM indicesReajuste WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -46,7 +46,7 @@ class AdjustmentRateDAO{
         $dto = null;
 
         $query = "SELECT * FROM indicesReajuste WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -72,7 +72,7 @@ class AdjustmentRateDAO{
         $query = "SELECT * FROM indicesReajuste WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM indicesReajuste";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

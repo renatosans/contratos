@@ -17,7 +17,7 @@ class PartRequestDAO{
         if ($dto->id > 0)
             $query = "UPDATE pedidoPecaReposicao SET chamadoServico_id = ".$dto->codigoChamadoServico.", data = '".$dto->data." ".$dto->hora."', destinatarios = '".$dto->destinatarios."' WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class PartRequestDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM pedidoPecaReposicao WHERE id = ".$id.";";
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -47,7 +47,7 @@ class PartRequestDAO{
 
         $fieldList = "id, chamadoServico_id, DATE(data) as data, TIME_FORMAT(TIME(data), '%H:%i') as hora, destinatarios";
         $query = "SELECT ".$fieldList." FROM pedidoPecaReposicao WHERE id = ".$id.";";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -75,7 +75,7 @@ class PartRequestDAO{
         $query = "SELECT ".$fieldList." FROM pedidoPecaReposicao WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM pedidoPecaReposicao;";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

@@ -17,7 +17,7 @@ class PartReplacementDAO{
         $query = "SELECT DATE(CHAM.dataAbertura) as dataAbertura, DESP.* FROM despesaChamado DESP JOIN chamadoServico CHAM ON DESP.codigoChamado = CHAM.id";
         if (!empty($filter)) $query = $query." WHERE ".$filter;
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

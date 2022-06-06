@@ -17,7 +17,7 @@ class AdjustmentDAO{
         if ($dto->id > 0)
             $query = "UPDATE reajusteContrato SET contrato_id = ".$dto->contrato_id.", data = '".$dto->data."', indiceUtilizado = '".$dto->indiceUtilizado."', aliquotaUtilizada = ".$dto->aliquotaUtilizada." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class AdjustmentDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM reajusteContrato WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -47,7 +47,7 @@ class AdjustmentDAO{
 
         $fieldList = "id, contrato_id, DATE(data) as data, indiceUtilizado, aliquotaUtilizada";
         $query = "SELECT ".$fieldList." FROM reajusteContrato WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -75,7 +75,7 @@ class AdjustmentDAO{
         $query = "SELECT ".$fieldList." FROM reajusteContrato WHERE ".$filter;
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM reajusteContrato";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

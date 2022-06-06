@@ -17,7 +17,7 @@ class SubContractDAO{
         if ($dto->id > 0)
             $query = "UPDATE subcontrato SET contrato_id = ".$dto->codigoContrato.", tipoContrato_id = ".$dto->codigoTipoContrato." WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -33,7 +33,7 @@ class SubContractDAO{
 
     function DeleteRecord($id){
         $query = "UPDATE subcontrato SET removido = 1 WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -46,7 +46,7 @@ class SubContractDAO{
         $dto = null;
 
         $query = "SELECT SUBC.*, TIPC.sigla as siglaTipoContrato FROM subContrato SUBC JOIN tipoContrato TIPC ON SUBC.tipocontrato_id = TIPC.id WHERE SUBC.id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -73,7 +73,7 @@ class SubContractDAO{
         $query = "SELECT SUBC.*, TIPC.sigla as siglaTipoContrato FROM subContrato SUBC JOIN tipoContrato TIPC ON SUBC.tipocontrato_id = TIPC.id WHERE removido = 0";
         if (!empty($filter)) $query = $query." AND ".$filter;
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

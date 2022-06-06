@@ -22,7 +22,7 @@ class ContractDAO{
         if ($dto->id > 0)
             $query = "UPDATE contrato SET numero = '".$dto->numero."', pn = '".$dto->pn."', divisao = '".$dto->divisao."', contato = ".$dto->contato.", status = ".$dto->status.", categoria = ".$dto->categoria.", assinatura = '".$dto->dataAssinatura."', encerramento = '".$dto->dataEncerramento."', inicioAtendimento = '".$dto->inicioAtendimento."', fimAtendimento = '".$dto->fimAtendimento."', primeiraParcela = '".$dto->primeiraParcela."', parcelaAtual = ".$dto->parcelaAtual.", mesReferencia = ".$dto->mesReferencia.", anoReferencia = ".$dto->anoReferencia.", quantidadeParcelas = ".$dto->quantidadeParcelas.", global = ".$dto->global.", vendedor = ".$dto->vendedor.", diaVencimento = ".$dto->diaVencimento.", referencialVencimento = ".$dto->referencialVencimento.", diaLeitura = ".$dto->diaLeitura.", referencialLeitura = ".$dto->referencialLeitura.", indicesReajuste_id = ".$dto->indiceReajuste.", dataRenovacao = ".$dataRenovacao.", dataReajuste = ".$dataReajuste.", valorImplantacao = ".$dto->valorImplantacao.", quantParcelasImplantacao = ".$dto->quantParcelasImplantacao.", obs = '".$dto->obs."' WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -38,7 +38,7 @@ class ContractDAO{
 
     function DeleteRecord($id){
         $query = "UPDATE contrato SET removido = 1 WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -55,7 +55,7 @@ class ContractDAO{
         $fieldList = $fieldList."global, vendedor, diaVencimento, referencialVencimento, diaLeitura, referencialLeitura, indicesReajuste_id, DATE(dataRenovacao) as dataRenovacao, dataReajuste, valorImplantacao, quantParcelasImplantacao, obs";
 
         $query = "SELECT ".$fieldList." FROM contrato WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -129,7 +129,7 @@ class ContractDAO{
     function FetchArray($query){
         $dtoArray = array();
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -212,7 +212,7 @@ class ContractDAO{
 
         $fieldList = "DATE_FORMAT(inicioAtendimento,'%d/%m/%Y') as inicioAtendimento, DATE_FORMAT(fimAtendimento,'%d/%m/%Y') as fimAtendimento, CONCAT(parcelaAtual, '/', quantidadeParcelas) as parcelaAtual";
         $query = "SELECT ".$fieldList." FROM contrato WHERE id = ".$contractId;
-        $recordSet = mysqli_query($query, $mysqlConnection);
+        $recordSet = mysqli_query($mysqlConnection, $query);
         if (!$recordSet) {
             print_r(mysqli_error());
             echo '<br/><br/>';

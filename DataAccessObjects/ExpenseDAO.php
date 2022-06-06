@@ -23,7 +23,7 @@ class ExpenseDAO{
         if ($dto->id > 0)
             $query = "UPDATE despesaChamado SET codigoChamado = ".$codigoChamado.", codigoInsumo = ".$codigoInsumo.", codigoItem = '".$dto->codigoItem."', nomeItem = '".$dto->nomeItem."', quantidade = ".$dto->quantidade.", medicaoInicial = ".$dto->medicaoInicial.", medicaoFinal = ".$dto->medicaoFinal.", totalDespesa = ".$dto->totalDespesa.", observacao = '".$dto->observacao."' WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -39,7 +39,7 @@ class ExpenseDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM despesaChamado WHERE id = ".$id.";";
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -52,7 +52,7 @@ class ExpenseDAO{
         $dto = null;
 
         $query = "SELECT * FROM despesaChamado WHERE id = ".$id.";";
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -84,7 +84,7 @@ class ExpenseDAO{
         $query = "SELECT * FROM despesaChamado WHERE ".$filter.";";
         if (empty($filter)) $query = "SELECT * FROM despesaChamado;";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

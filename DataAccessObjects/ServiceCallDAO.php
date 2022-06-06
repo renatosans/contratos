@@ -26,7 +26,7 @@ class ServiceCallDAO{
         if ($dto->id > 0)
             $query = "UPDATE chamadoServico SET defeito = '".$dto->defeito."', dataAbertura = ".$dataAbertura.", dataFechamento = ".$dataFechamento.", dataAtendimento = ".$dataAtendimento.", tempoAtendimento = '".$dto->tempoAtendimento."', businessPartnerCode = '".$dto->businessPartnerCode."', contato = '".$dto->contato."', status = ".$dto->status.", tipo = ".$dto->tipo.", abertoPor = ".$dto->abertoPor.", tecnico = ".$dto->tecnico.", prioridade = ".$dto->prioridade.", cartaoEquipamento = ".$dto->codigoCartaoEquipamento.", modelo = '".$dto->modelo."', fabricante = '".$dto->fabricante."', observacaoTecnica = '".$dto->observacaoTecnica."', sintoma = '".$dto->sintoma."', causa = '".$dto->causa."', acao = '".$dto->acao."' WHERE id = ".$dto->id.";";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -42,7 +42,7 @@ class ServiceCallDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM chamadoServico WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -57,7 +57,7 @@ class ServiceCallDAO{
         $query = "SELECT COUNT(*) as recCount FROM chamadoServico WHERE ".$filter;
         if (empty($filter)) $query = "SELECT COUNT(*) as recCount FROM chamadoServico";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -80,7 +80,7 @@ class ServiceCallDAO{
         $fieldList = $fieldList."status, tipo, abertoPor, tecnico, prioridade, cartaoEquipamento, modelo, fabricante, observacaoTecnica, sintoma, causa, acao";
 
         $query = "SELECT ".$fieldList." FROM chamadoServico WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -132,7 +132,7 @@ class ServiceCallDAO{
         $query = "SELECT ".$fieldList." FROM chamadoServico WHERE ".$filter;
         if (empty($filter)) $query = "SELECT ".$fieldList." FROM chamadoServico";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

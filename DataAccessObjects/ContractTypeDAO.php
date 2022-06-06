@@ -15,7 +15,7 @@ class ContractTypeDAO{
         // Monta a query
         $query = "INSERT INTO tipocontrato VALUES (NULL, '".$dto->sigla."', '".$dto->nome."', ".$dto->permiteBonus.");";
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -31,7 +31,7 @@ class ContractTypeDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM tipocontrato WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -44,7 +44,7 @@ class ContractTypeDAO{
         $dto = null;
 
         $query = "SELECT * FROM tipocontrato WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -70,7 +70,7 @@ class ContractTypeDAO{
         $query = "SELECT * FROM tipocontrato WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM tipocontrato";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';

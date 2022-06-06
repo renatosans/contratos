@@ -20,7 +20,7 @@ class MailingDAO{
         if ($dto->id > 0)
             $query = "UPDATE mailing SET businessPartnerCode = '".$dto->businessPartnerCode."', businessPartnerName = '".$dto->businessPartnerName."', contrato_id = ".$dto->contrato_id.", subContrato_id = ".$dto->subContrato_id.", diaFaturamento = ".$dto->diaFaturamento.", destinatarios = '".$dto->destinatarios."', enviarDemonstrativo = ".$enviarDemonstrativo.", ultimoEnvio = ".$ultimoEnvio." WHERE id = ".$dto->id;
 
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
         if ($result) {
             $insertId = mysqli_insert_id($this->mysqlConnection);
             if ($insertId == null) return $dto->id;
@@ -36,7 +36,7 @@ class MailingDAO{
 
     function DeleteRecord($id){
         $query = "DELETE FROM mailing WHERE id = ".$id;
-        $result = mysqli_query($query, $this->mysqlConnection);
+        $result = mysqli_query($this->mysqlConnection, $query);
 
         if ((!$result) && ($this->showErrors)) {
             print_r(mysqli_error());
@@ -49,7 +49,7 @@ class MailingDAO{
         $dto = null;
 
         $query = "SELECT * FROM mailing WHERE id = ".$id;
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
@@ -80,7 +80,7 @@ class MailingDAO{
         $query = "SELECT * FROM mailing WHERE ".$filter;
         if (empty($filter)) $query = "SELECT * FROM mailing";
 
-        $recordSet = mysqli_query($query, $this->mysqlConnection);
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
         if ((!$recordSet) && ($this->showErrors)) {
             print_r(mysqli_error());
             echo '<br/><br/>';
