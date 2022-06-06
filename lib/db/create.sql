@@ -1029,6 +1029,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `addOnContratos`.`fabricante`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `addOnContratos`;
+INSERT INTO `addOnContratos`.`fabricante` (`id`, `nome`) VALUES (1, 'Samsung');
+INSERT INTO `addOnContratos`.`fabricante` (`id`, `nome`) VALUES (2, 'Canon');
+INSERT INTO `addOnContratos`.`fabricante` (`id`, `nome`) VALUES (3, 'Lexmark');
+INSERT INTO `addOnContratos`.`fabricante` (`id`, `nome`) VALUES (4, 'Konica Minolta');
+INSERT INTO `addOnContratos`.`fabricante` (`id`, `nome`) VALUES (5, 'Brother');
+INSERT INTO `addOnContratos`.`fabricante` (`id`, `nome`) VALUES (6, 'Xerox');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `addOnContratos`.`modeloEquipamento`
 -- -----------------------------------------------------
 START TRANSACTION;
