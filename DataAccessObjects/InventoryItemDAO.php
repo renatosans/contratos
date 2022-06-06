@@ -6,7 +6,7 @@ class InventoryItemDAO{
     var $showErrors;
 
     #construtor
-    function InventoryItemDAO($sqlserverConnection){
+    function __construct($sqlserverConnection){
         $this->sqlserverConnection = $sqlserverConnection;
         $this->showErrors = 0;
     }

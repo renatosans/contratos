@@ -2,7 +2,6 @@
 
 session_start();
 session_destroy();
-
 include_once("defines.php");
 
 ?>
