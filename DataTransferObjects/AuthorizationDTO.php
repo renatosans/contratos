@@ -7,7 +7,7 @@ class AuthorizationDTO{
     var $nivelAutorizacao  = 0;
 
 
-    function AuthorizationDTO(){
+    function __construct(){
 
     }
 

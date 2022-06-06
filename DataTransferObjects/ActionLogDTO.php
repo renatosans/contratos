@@ -14,7 +14,7 @@ class ActionLogDTO{
     var $valor         = "";
 
 
-    function ActionLogDTO($transactionType = "", $objectType = "", $objectId = 0) {
+    function __construct($transactionType = "", $objectType = "", $objectId = 0) {
         $this->login_id = $_SESSION["usrID"];
         $this->data = date("Y-m-d",time());
         $this->hora = date("H:i",time());

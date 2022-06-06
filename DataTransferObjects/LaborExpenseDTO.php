@@ -12,7 +12,7 @@ class LaborExpenseDTO{
     var $tempoAtendimento   = null;
 
 
-    function LaborExpenseDTO(){
+    function __construct(){
 
     }
 

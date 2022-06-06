@@ -5,7 +5,7 @@ class ManufacturerDTO{
     var $FirmName  = "";
 
 
-    function ManufacturerDTO(){
+    function __construct(){
 
     }
 

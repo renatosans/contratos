@@ -6,7 +6,7 @@ class EquipmentModelDTO{
     var $fabricante  = 0;
 
 
-    function EquipmentModelDTO(){
+    function __construct(){
 
     }
 

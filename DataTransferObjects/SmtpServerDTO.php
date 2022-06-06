@@ -11,7 +11,7 @@ class SmtpServerDTO{
     var $defaultServer  = false;
 
 
-    function SmtpServerDTO(){
+    function __construct(){
 
     }
 

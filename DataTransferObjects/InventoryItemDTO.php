@@ -12,7 +12,7 @@ class InventoryItemDTO{
     var $useInstructions = "";
 
 
-    function InventoryItemDTO(){
+    function __construct(){
 
     }
 

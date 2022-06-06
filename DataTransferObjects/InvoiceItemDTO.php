@@ -8,7 +8,7 @@ class InvoiceItemDTO{
     var $usage           = "";
 
 
-    function InvoiceItemDTO() {
+    function __construct(){
 
     }
 

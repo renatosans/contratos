@@ -8,7 +8,7 @@ class AssetDepreciationDTO{
     var $intensidadeDesgaste = 0;
 
 
-    function AssetDepreciationDTO() {
+    function __construct(){
 
     }
 

@@ -7,7 +7,7 @@ class SalesPersonDTO{
     var $serializedData  = "";
 
 
-    function SalesPersonDTO(){
+    function __construct(){
 
     }
 

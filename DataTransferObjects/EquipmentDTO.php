@@ -34,7 +34,7 @@ class EquipmentDTO{
     var $salesPerson         = 0;
 
 
-    function EquipmentDTO(){
+    function __construct(){
 
     }
 

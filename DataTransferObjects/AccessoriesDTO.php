@@ -8,7 +8,7 @@ class AccessoriesDTO{
     var $amount         = 0;
 
 
-    function AccessoriesDTO(){
+    function __construct(){
 
     }
 

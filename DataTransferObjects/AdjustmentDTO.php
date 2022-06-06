@@ -8,7 +8,7 @@ class AdjustmentDTO{
     var $aliquotaUtilizada  = 0;
 
 
-    function AdjustmentDTO(){
+    function __construct(){
 
     }
 

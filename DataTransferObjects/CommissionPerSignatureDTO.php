@@ -8,7 +8,7 @@ class CommissionPerSignatureDTO{
     var $comissao            = 0;
 
 
-    function CommissionPerSignatureDTO() {
+    function __construct(){
 
     }
 

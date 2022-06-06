@@ -27,7 +27,7 @@ class ServiceCallDTO{
     var $acao                    = "";
 
 
-    function ServiceCallDTO(){
+    function __construct(){
 
     }
 

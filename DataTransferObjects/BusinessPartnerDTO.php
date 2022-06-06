@@ -10,7 +10,7 @@ class BusinessPartnerDTO{
     var $industry         = "";
 
 
-    function BusinessPartnerDTO(){
+    function __construct(){
 
     }
 

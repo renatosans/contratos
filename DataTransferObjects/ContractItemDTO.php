@@ -7,7 +7,7 @@ class ContractItemDTO{
     var $codigoSubContrato        = 0;
 
 
-    function ContractItemDTO(){
+    function __construct(){
 
     }
 

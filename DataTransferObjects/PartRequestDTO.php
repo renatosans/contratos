@@ -8,7 +8,7 @@ class PartRequestDTO{
     var $destinatarios            = "";
 
 
-    function PartRequestDTO(){
+    function __construct(){
 
     }
 

@@ -10,7 +10,7 @@ class RequestItemDTO{
     var $total                    = 0;
 
 
-    function RequestItemDTO(){
+    function __construct(){
 
     }
 

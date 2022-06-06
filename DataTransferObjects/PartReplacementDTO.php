@@ -10,7 +10,7 @@ class PartReplacementDTO{
     var $observacao         = "";
 
 
-    function PartReplacementDTO(){
+    function __construct(){
 
     }
 

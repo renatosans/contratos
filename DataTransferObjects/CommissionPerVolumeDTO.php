@@ -10,7 +10,7 @@ class CommissionPerVolumeDTO{
     var $comissao            = 0;
 
 
-    function CommissionPerVolumeDTO(){
+    function __construct(){
 
     }
 

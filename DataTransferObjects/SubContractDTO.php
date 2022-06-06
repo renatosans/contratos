@@ -7,7 +7,7 @@ class SubContractDTO{
     var $siglaTipoContrato   = 0;
 
 
-    function SubContractDTO(){
+    function __construct(){
 
     }
 

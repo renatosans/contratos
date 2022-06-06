@@ -13,7 +13,7 @@ class ExpenseDTO{
     var $observacao         = "";
 
 
-    function ExpenseDTO(){
+    function __construct(){
 
     }
 

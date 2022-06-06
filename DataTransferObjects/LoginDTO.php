@@ -8,7 +8,7 @@ class LoginDTO{
     var $senha          = "";
 
 
-    function LoginDTO(){
+    function __construct(){
 
     }
 

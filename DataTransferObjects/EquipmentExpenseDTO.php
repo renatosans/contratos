@@ -15,7 +15,7 @@ class EquipmentExpenseDTO{
     var $totalDespesa       = 0;
 
 
-    function EquipmentExpenseDTO(){
+    function __construct(){
 
     }
 

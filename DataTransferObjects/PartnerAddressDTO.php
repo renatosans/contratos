@@ -14,7 +14,7 @@ class PartnerAddressDTO{
     var $locationRef    = "";
 
 
-    function PartnerAddressDTO(){
+    function __construct(){
 
     }
 

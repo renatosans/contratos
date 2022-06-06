@@ -5,7 +5,7 @@ class CounterDTO{
     var $nome           = "";
 
 
-    function CounterDTO(){
+    function __construct(){
 
     }
 

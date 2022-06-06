@@ -31,7 +31,7 @@ class ContractDTO{
     var $obs                       = "";
 
 
-    function ContractDTO(){
+    function __construct(){
 
     }
 

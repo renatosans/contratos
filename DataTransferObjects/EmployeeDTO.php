@@ -7,7 +7,7 @@ class EmployeeDTO{
     var $lastName       = "";
 
 
-    function EmployeeDTO(){
+    function __construct(){
 
     }
 

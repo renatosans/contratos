@@ -12,7 +12,7 @@ class MailingDTO{
     var $ultimoEnvio          = NULL;
 
 
-    function MailingDTO(){
+    function __construct(){
 
     }
 

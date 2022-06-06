@@ -7,7 +7,7 @@ class ProductionInputDTO{
     var $valor       = 0;
 
 
-    function ProductionInputDTO(){
+    function __construct(){
 
     }
 

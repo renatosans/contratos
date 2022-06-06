@@ -7,7 +7,7 @@ class IndustryDTO{
     var $description  = "";
 
 
-    function IndustryDTO(){
+    function __construct(){
 
     }
 

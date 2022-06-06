@@ -8,7 +8,7 @@ class ContactPersonDTO{
     var $email        = "";
 
 
-    function ContactPersonDTO(){
+    function __construct(){
 
     }
 

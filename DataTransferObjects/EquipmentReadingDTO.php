@@ -20,7 +20,7 @@ class EquipmentReadingDTO{
     var $origemLeitura      = "";
 
 
-    function EquipmentReadingDTO(){
+    function __construct(){
 
     }
 

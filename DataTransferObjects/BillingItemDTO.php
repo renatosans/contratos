@@ -22,7 +22,7 @@ class BillingItemDTO{
     var $acrescimoDesconto        = 0;
 
 
-    function BillingItemDTO(){
+    function __construct(){
 
     }
 

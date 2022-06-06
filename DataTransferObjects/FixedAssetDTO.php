@@ -12,7 +12,7 @@ class FixedAssetDTO{
     var $vidaUtil                = 0;
 
 
-    function FixedAssetDTO(){
+    function __construct(){
 
     }
 

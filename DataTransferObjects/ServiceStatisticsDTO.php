@@ -9,7 +9,7 @@ class ServiceStatisticsDTO{
     var $totalEmSegundos     = 0;
 
 
-    function ServiceStatisticsDTO(){
+    function __construct(){
 
     }
 

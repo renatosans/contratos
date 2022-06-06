@@ -10,7 +10,7 @@ class ContractBonusDTO{
     var $valor             = 0;
 
 
-    function ContractBonusDTO(){
+    function __construct(){
 
     }
 

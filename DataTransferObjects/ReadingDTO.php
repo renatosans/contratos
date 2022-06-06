@@ -18,7 +18,7 @@ class ReadingDTO{
     var $reset                    = 0;
 
 
-    function ReadingDTO(){
+    function __construct(){
 
     }
 

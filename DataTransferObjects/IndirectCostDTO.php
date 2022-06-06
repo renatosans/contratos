@@ -13,7 +13,7 @@ class IndirectCostDTO{
     var $observacao      = "";
 
 
-    function IndirectCostDTO(){
+    function __construct(){
 
     }
 

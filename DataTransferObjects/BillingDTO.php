@@ -16,7 +16,7 @@ class BillingDTO{
     var $incluirRelatorio     = false;
 
 
-    function BillingDTO(){
+    function __construct(){
 
     }
 

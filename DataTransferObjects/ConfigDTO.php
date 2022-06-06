@@ -8,7 +8,7 @@ class ConfigDTO{
     var $valor          = "";
 
 
-    function ConfigDTO(){
+    function __construct(){
 
     }
 

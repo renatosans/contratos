@@ -9,7 +9,7 @@ class SupplyRequestDTO{
     var $observacao               = "";
 
 
-    function SupplyRequestDTO(){
+    function __construct(){
 
     }
 

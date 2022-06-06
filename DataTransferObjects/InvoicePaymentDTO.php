@@ -18,7 +18,7 @@ class InvoicePaymentDTO{
     var $demFaturamento       = 0;
 
 
-    function InvoicePaymentDTO(){
+    function __construct(){
 
     }
 

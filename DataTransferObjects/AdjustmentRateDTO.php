@@ -7,7 +7,7 @@ class AdjustmentRateDTO{
     var $aliquota   = 0;
 
 
-    function AdjustmentRateDTO(){
+    function __construct(){
 
     }
 

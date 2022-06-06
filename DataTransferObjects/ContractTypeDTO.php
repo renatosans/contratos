@@ -7,7 +7,7 @@ class ContractTypeDTO{
     var $permiteBonus = 0;
 
 
-    function ContractTypeDTO(){
+    function __construct(){
 
     }
 

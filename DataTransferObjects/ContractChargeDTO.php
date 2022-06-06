@@ -12,7 +12,7 @@ class ContractChargeDTO{
     var $individual          = 0;
 
 
-    function ContractChargeDTO(){
+    function __construct(){
 
     }
 
