@@ -896,7 +896,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `addOnContratos`;
-INSERT INTO `addOnContratos`.`login` (`id`, `idExterno`, `nome`, `usuario`, `senha`, `foto`, `formatoImagem`, `removido`) VALUES (1, NULL, 'Administrador', 'root', '67bscBlThU', DEFAULT, NULL, 0);
+INSERT INTO `addOnContratos`.`login` (`id`, `idExterno`, `nome`, `usuario`, `senha`, `foto`, `formatoImagem`, `removido`) VALUES (1, NULL, 'Administrador', 'root', '67bscBlThU', '<empty>', NULL, 0);
 
 COMMIT;
 
