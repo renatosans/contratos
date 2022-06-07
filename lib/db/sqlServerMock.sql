@@ -1,8 +1,5 @@
 
 
-CREATE DATABASE [SBO_DATACOPY]
-
-
 CREATE TABLE OINS(
  InsID              INT NULL,
  ManufSN            VARCHAR(255) NULL,
