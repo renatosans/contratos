@@ -53,3 +53,14 @@ CREATE TABLE OCRD(
 
 INSERT INTO OCRD(CardCode, CardName) VALUES (1, 'CNSM LOGISTICA')
 SELECT * FROM OCRD
+
+DECLARE @ACCESSORIES TABLE (
+    Code        INT NULL,
+    U_InsId     INT NULL,
+    U_ItemCode  INT NULL,
+    U_ItemName  VARCHAR(255) NULL,
+    U_Amount    INT NULL
+)
+
+INSERT INTO @ACCESSORIES(Code, U_ItemName, U_Amount) VALUES (1, 'Unidade de Fusão EP-6001', 2)
+SELECT Code, U_InsId, U_ItemCode, U_ItemName, U_Amount FROM [@ACCESSORIES] WHERE Code = 1
