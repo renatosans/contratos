@@ -33,11 +33,11 @@ CREATE TABLE OINS(
  U_SalesPerson        INT NULL
  )
 
+INSERT INTO OINS(InsID, ItemCode, ItemName, status) VALUES (1, 123456, 'COPIADORA EP-1031', 'A')
+UPDATE OINS SET U_InstallationDate = GETDATE(), U_InstallationDocNum = '', U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_RemovalDocNum = '', U_BwPageCounter2 = 123456, U_Technician = 123, U_Model = 123, U_Capacity = '', U_SLA = '', U_Comments = '', U_SalesPerson = 123 WHERE InsId = 1
 SELECT * FROM OINS
 SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
 SELECT * FROM OINS WHERE (status = 'A' OR status = 'L') AND U_InstallationDate > GETDATE() ORDER BY manufSN
-INSERT INTO OINS(InsID, ItemCode, ItemName, status) VALUES (1, 123456, 'COPIADORA EP-1031', 'A')
-UPDATE OINS SET U_InstallationDate = GETDATE(), U_InstallationDocNum = '', U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_RemovalDocNum = '', U_BwPageCounter2 = 123456, U_Technician = 123, U_Model = 123, U_Capacity = '', U_SLA = '', U_Comments = '', U_SalesPerson = 123 WHERE InsId = 1
 
 
 CREATE TABLE OCRD(
@@ -50,5 +50,5 @@ CREATE TABLE OCRD(
     IndustryC   INT NULL
 )
 
-SELECT * FROM OCRD
 INSERT INTO OCRD(CardCode, CardName) VALUES (1, 'CNSM LOGISTICA')
+SELECT * FROM OCRD
