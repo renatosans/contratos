@@ -19,18 +19,18 @@ CREATE TABLE OINS(
  Country            VARCHAR(255) NULL,
  instLocation       VARCHAR(255) NULL,
  status             CHAR(2) NULL,
- U_InstallationDate DATE NULL,
- installationDocNum INT NULL,
- counterInitialVal  INT NULL,
- removalDate        DATE NULL,
- removalDocNum      INT NULL,
- counterFinalVal    INT NULL,
- technician         INT NULL,
- model              INT NULL,
- capacity           INT NULL,
- sla                INT NULL,
- comments           VARCHAR(255) NULL,
- salesPerson        INT NULL
+ U_InstallationDate   DATE NULL,
+ U_InstallationDocNum INT NULL,
+ U_CounterInitialVal  INT NULL,
+ U_RemovalDate        DATE NULL,
+ U_RemovalDocNum      INT NULL,
+ U_CounterFinalVal    INT NULL,
+ U_Technician         INT NULL,
+ U_Model              INT NULL,
+ U_Capacity           INT NULL,
+ U_SLA                INT NULL,
+ U_Comments           VARCHAR(255) NULL,
+ U_SalesPerson        INT NULL
  )
 
 SELECT * FROM OINS
