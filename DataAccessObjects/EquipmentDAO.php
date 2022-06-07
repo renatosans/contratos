@@ -2,8 +2,8 @@
 
 class EquipmentDAO{
 
-    var $sqlserverConnection;
-    var $showErrors;
+    private $sqlserverConnection;
+    private $showErrors;
 
     #construtor
     function __construct($sqlserverConnection){
