@@ -79,7 +79,8 @@ CREATE TABLE OITM(
     U_UseInstructions  VARCHAR(255) NULL,
 )
 
-INSERT INTO OITM(ItemCode, ItemName, AvgPrice) VALUES (1, 'Tampa Frontal DCP8065DN', 320.99)
+INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (1, 'Toner DCP8065DN', 100, 57)
+INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (2, 'Tampa Frontal DCP8065DN', 200, 320.99)
 SELECT * FROM OITM
 
 

@@ -4,7 +4,7 @@ class Text{
     var $value;
 
     // construtor
-    function Text($value){
+    function __construct($value){
         $this->value = $value;
     }
 
