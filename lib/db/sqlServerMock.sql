@@ -1,12 +1,12 @@
 
 CREATE TABLE OINS(
- insID              INT NULL,
- manufSN            VARCHAR(255) NULL,
- internalSN         VARCHAR(255) NULL,
- itemCode           INT NULL,
- itemName           VARCHAR(255) NULL,
- customer           INT NULL,
- custmrName         VARCHAR(255) NULL,
+ InsID              INT NULL,
+ ManufSN            VARCHAR(255) NULL,
+ InternalSN         VARCHAR(255) NULL,
+ ItemCode           INT NULL,
+ ItemName           VARCHAR(255) NULL,
+ Customer           INT NULL,
+ CustmrName         VARCHAR(255) NULL,
  contactPerson      INT NULL,
  addressType        INT NULL,
  street             VARCHAR(255) NULL,
@@ -19,7 +19,7 @@ CREATE TABLE OINS(
  country            VARCHAR(255) NULL,
  instLocation       VARCHAR(255) NULL,
  status             CHAR(2) NULL,
- installationDate   DATE NULL,
+ U_InstallationDate DATE NULL,
  installationDocNum INT NULL,
  counterInitialVal  INT NULL,
  removalDate        DATE NULL,
@@ -34,6 +34,5 @@ CREATE TABLE OINS(
  )
 
 SELECT * FROM OINS
-
 SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
-
+SELECT * FROM OINS WHERE (status = 'A' OR status = 'L') AND U_InstallationDate > GETDATE() ORDER BY manufSN
