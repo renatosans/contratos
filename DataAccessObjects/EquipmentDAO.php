@@ -37,7 +37,7 @@ class EquipmentDAO{
         $dto = null;
 
         $query = "SELECT * FROM OINS WHERE InsId = '".$equipmentCode."'";
-        $recordSet = sqlsrv_query($query, $this->sqlserverConnection);
+        $recordSet = sqlsrv_query($this->sqlserverConnection, $query);
 
         $record = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_ASSOC);
         if (!$record) return null;
