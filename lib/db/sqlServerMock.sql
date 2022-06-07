@@ -66,3 +66,18 @@ DECLARE @ACCESSORIES TABLE (
 INSERT INTO @ACCESSORIES(Code, U_ItemName, U_Amount) VALUES (1, 'Unidade de Fusão EP-6001', 2)
 SELECT Code, U_InsId, U_ItemCode, U_ItemName, U_Amount FROM @ACCESSORIES WHERE Code = 1
 
+
+CREATE TABLE OITM(
+    ItemCode    INT NULL,
+    ItemName    VARCHAR(255) NULL,
+    ItmsGrpCod  INT NULL,
+	AvgPrice    DECIMAL,
+    UserText    VARCHAR(255) NULL,
+    U_Expenses         VARCHAR(255) NULL,
+    U_Durability       VARCHAR(255) NULL,
+    U_SerializedData   VARCHAR(255) NULL,
+    U_UseInstructions  VARCHAR(255) NULL,
+)
+
+INSERT INTO OITM(ItemCode, ItemName, AvgPrice) VALUES (1, 'Tampa Frontal DCP8065DN', 320.99)
+SELECT * FROM OITM
