@@ -1,5 +1,8 @@
 
 
+SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OCRD', 'OITM', 'OITB', 'OINS')
+
+
 CREATE TABLE OINS(
  InsID              INT NULL,
  ManufSN            VARCHAR(255) NULL,
