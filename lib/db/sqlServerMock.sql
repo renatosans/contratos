@@ -37,7 +37,8 @@ CREATE TABLE OINS(
  U_SalesPerson        INT NULL
  )
 
-INSERT INTO OINS(InsID, ItemCode, ItemName, status) VALUES (1, 123456, 'COPIADORA EP-1031', 'A')
+INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, status) VALUES (1, 'A0V0011001804', 123456, 'COPIADORA Bizhub PRO C6501', 'A')
+INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, status) VALUES (1, 'A5C0011032437', 123456, 'Konica Minolta Bizhub C454e', 'A')
 UPDATE OINS SET U_InstallationDate = GETDATE(), U_InstallationDocNum = '', U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_RemovalDocNum = '', U_BwPageCounter2 = 123456, U_Technician = 123, U_Model = 123, U_Capacity = '', U_SLA = '', U_Comments = '', U_SalesPerson = 123 WHERE InsId = 1
 SELECT * FROM OINS
 SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
@@ -84,6 +85,9 @@ CREATE TABLE OITM(
 
 INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (1, 'Toner DCP8065DN', 100, 57)
 INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (2, 'Tampa Frontal DCP8065DN', 200, 320.99)
+INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (3, 'Bucha', 200, 35.99)
+INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (4, 'Suporte', 200, 150.99)
+INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (5, 'Unidade de Imagem', 200, 940.99)
 SELECT * FROM OITM
 
 
