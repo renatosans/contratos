@@ -114,3 +114,13 @@ INSERT INTO OSCS(StatusID, Name) VALUES (2, 'FECHADO')
 INSERT INTO OSCS(StatusID, Name) VALUES (3, 'CANCELADO')
 INSERT INTO OSCS(StatusID, Name) VALUES (4, 'AGUARDANDO PEÇAS')
 
+
+CREATE TABLE OSCT(
+    CallTypeID  INT NULL,
+    Name        VARCHAR(255) NULL,
+    Descriptio  VARCHAR(255) NULL
+)
+
+INSERT INTO OSCT(CallTypeID, Name) VALUES (1, 'Manutenção Preventiva')
+INSERT INTO OSCT(CallTypeID, Name) VALUES (2, 'Manutenção Corretiva')
+INSERT INTO OSCT(CallTypeID, Name) VALUES (3, 'Retorno')
