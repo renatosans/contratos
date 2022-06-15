@@ -1,12 +1,12 @@
 <?php
 
 class ServiceStatisticsDTO{
-    var $id                  = 0;
-    var $mesReferencia       = 0;
-    var $anoReferencia       = 0;
-    var $quantidadeChamados  = 0;
-    var $tempoEmAtendimento  = null;
-    var $totalEmSegundos     = 0;
+    public int    $id                  = 0;
+    public int    $mesReferencia       = 0;
+    public int    $anoReferencia       = 0;
+    public int    $quantidadeChamados  = 0;
+    public String $tempoEmAtendimento  = ""; // '00:00:00'
+    public int    $totalEmSegundos     = 0;
 
 
     function __construct(){

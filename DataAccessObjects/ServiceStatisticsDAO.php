@@ -106,7 +106,7 @@ class ServiceStatisticsDAO{
     {
         $totals = array();
 
-        $query =  "SELECT SUM(1) AS quantidadeChamados, SEC_TO_TIME(SUM(TIME_TO_SEC(tempoAtendimento))) AS tempoTotalAtendimento FROM addoncontratos.chamadoservico WHERE ";
+        $query =  "SELECT COALESCE(SUM(1),0) AS quantidadeChamados, COALESCE(SEC_TO_TIME(SUM(TIME_TO_SEC(tempoAtendimento))),'') AS tempoTotalAtendimento FROM addoncontratos.chamadoservico WHERE ";
         $query .= "YEAR(dataAtendimento) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH)) AND MONTH(dataAtendimento) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))";
 
         $recordSet = mysqli_query($this->mysqlConnection, $query);
