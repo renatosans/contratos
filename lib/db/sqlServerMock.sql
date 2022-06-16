@@ -1,6 +1,6 @@
 
 
-SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND')
+SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR')
 
 
 CREATE TABLE OINS(
@@ -39,7 +39,7 @@ CREATE TABLE OINS(
 
 INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A0V0011001804', 123456, 'COPIADORA Bizhub PRO C6501', 3, 'A', 2)
 INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A5C0011032437', 123456, 'Konica Minolta Bizhub C454e', 3, 'A', 2)
-UPDATE OINS SET U_InstallationDate = GETDATE(), U_InstallationDocNum = '', U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_RemovalDocNum = '', U_BwPageCounter2 = 123456, U_Technician = 123, U_Model = 123, U_Capacity = '', U_SLA = '', U_Comments = '', U_SalesPerson = 123 WHERE InsId = 1
+UPDATE OINS SET U_InstallationDate = GETDATE(), U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_BwPageCounter2 = 123456 WHERE InsId = 1
 SELECT * FROM OINS
 SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
 SELECT * FROM OINS WHERE (status = 'A' OR status = 'L') AND U_InstallationDate > GETDATE() ORDER BY manufSN
