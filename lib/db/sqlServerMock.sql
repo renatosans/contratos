@@ -37,8 +37,8 @@ CREATE TABLE OINS(
  U_SalesPerson        INT NULL
  )
 
-INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, status) VALUES (1, 'A0V0011001804', 123456, 'COPIADORA Bizhub PRO C6501', 'A')
-INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, status) VALUES (1, 'A5C0011032437', 123456, 'Konica Minolta Bizhub C454e', 'A')
+INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, Customer, Status) VALUES (1, 'A0V0011001804', 123456, 'COPIADORA Bizhub PRO C6501', 3, 'A')
+INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, Customer, Status) VALUES (1, 'A5C0011032437', 123456, 'Konica Minolta Bizhub C454e', 3, 'A')
 UPDATE OINS SET U_InstallationDate = GETDATE(), U_InstallationDocNum = '', U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_RemovalDocNum = '', U_BwPageCounter2 = 123456, U_Technician = 123, U_Model = 123, U_Capacity = '', U_SLA = '', U_Comments = '', U_SalesPerson = 123 WHERE InsId = 1
 SELECT * FROM OINS
 SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
@@ -55,9 +55,9 @@ CREATE TABLE OCRD(
     IndustryC   INT NULL
 )
 
-INSERT INTO OCRD(CardCode, CardName) VALUES (1, 'CNSM LOGISTICA')
-INSERT INTO OCRD(CardCode, CardName) VALUES (2, 'FSETE CONSULTORIA')
-INSERT INTO OCRD(CardCode, CardName) VALUES (3, 'GLOBE SERVIÇOS CONTABEIS')
+INSERT INTO OCRD(CardCode, CardName, CardFName) VALUES (1, 'CNSM LOGISTICA', 'CNSM')
+INSERT INTO OCRD(CardCode, CardName, CardFName) VALUES (2, 'FSETE CONSULTORIA', 'FSETE')
+INSERT INTO OCRD(CardCode, CardName, CardFName) VALUES (3, 'GLOBE SERVIÇOS CONTABEIS', 'GLOBE')
 SELECT * FROM OCRD
 
 
