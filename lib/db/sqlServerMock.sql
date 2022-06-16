@@ -124,3 +124,21 @@ CREATE TABLE OSCT(
 INSERT INTO OSCT(CallTypeID, Name) VALUES (1, 'Manutenção Preventiva')
 INSERT INTO OSCT(CallTypeID, Name) VALUES (2, 'Manutenção Corretiva')
 INSERT INTO OSCT(CallTypeID, Name) VALUES (3, 'Retorno')
+
+
+CREATE TABLE OHEM(
+    EmpID       INT NULL,
+    FirstName   VARCHAR(255) NULL,
+    MiddleName  VARCHAR(255) NULL,
+	LastName    VARCHAR(255) NULL,
+	Email       VARCHAR(255) NULL
+)
+
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (1, 'ISABELA', 'CRISTINA', 'CASSIANO', 'isabela@gmail.com');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (2, 'CAROLINA', 'MENEZES', 'DA COSTA', 'carolina@terra.com.br');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (3, 'LUIZ', 'AUGUSTO TEIXEIRA', 'BRANCO', 'luizaugusto@gmail.com');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (4, 'CAIO', 'BATISTA', 'CABRAL', 'caiocabral@hotmail.com.br');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (5, 'VINICIUS', 'RODRIGUES FEITOZA', 'VILLACA', 'vinicius@hotmail.com');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (6, 'GEILDA', 'CAMPOS ALVARIO', 'MARQUEZ', 'geilda33@gmail.com');
+
+SELECT EmpID, FirstName, LastName, Email FROM OHEM

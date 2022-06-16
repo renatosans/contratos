@@ -1,10 +1,10 @@
 <?php
 
 class EmployeeDTO{
-    var $empID          = 0;
-    var $firstName      = "";
-    var $middleName     = "";
-    var $lastName       = "";
+    public int $empID          = 0;
+    public String $firstName   = "";
+    public String $middleName  = "";
+    public String $lastName    = "";
 
 
     function __construct(){
