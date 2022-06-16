@@ -137,12 +137,12 @@ CREATE TABLE OHEM(
     Email       VARCHAR(255) NULL
 )
 
-INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (1, 'ISABELA', 'CRISTINA', 'CASSIANO', 'isabela@gmail.com');
-INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (2, 'CAROLINA', 'MENEZES', 'DA COSTA', 'carolina@terra.com.br');
-INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (3, 'LUIZ', 'AUGUSTO TEIXEIRA', 'BRANCO', 'luizaugusto@gmail.com');
-INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (4, 'CAIO', 'BATISTA', 'CABRAL', 'caiocabral@hotmail.com.br');
-INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (5, 'VINICIUS', 'RODRIGUES FEITOZA', 'VILLACA', 'vinicius@hotmail.com');
-INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (6, 'GEILDA', 'CAMPOS ALVARIO', 'MARQUEZ', 'geilda33@gmail.com');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (1, 'ISABELA', 'CRISTINA', 'CASSIANO', 6, 'isabela@gmail.com');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (2, 'CAROLINA', 'MENEZES', 'DA COSTA', 2, 'carolina@terra.com.br');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (3, 'LUIZ', 'AUGUSTO TEIXEIRA', 'BRANCO', 3, 'luizaugusto@gmail.com');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (4, 'CAIO', 'BATISTA', 'CABRAL', 1, 'caiocabral@hotmail.com.br');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (5, 'VINICIUS', 'RODRIGUES FEITOZA', 'VILLACA', 3, 'vinicius@hotmail.com');
+INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (6, 'GEILDA', 'CAMPOS ALVARIO', 'MARQUEZ', 1, 'geilda33@gmail.com');
 
 SELECT EmpID, FirstName, LastName, Email FROM OHEM
 
