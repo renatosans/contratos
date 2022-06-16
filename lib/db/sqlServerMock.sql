@@ -1,6 +1,6 @@
 
 
-SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OCRD', 'OITM', 'OITB', 'OINS')
+SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS')
 
 
 CREATE TABLE OINS(
@@ -131,6 +131,7 @@ CREATE TABLE OHEM(
     FirstName   VARCHAR(255) NULL,
     MiddleName  VARCHAR(255) NULL,
 	LastName    VARCHAR(255) NULL,
+	Position    INT NULL,
 	Email       VARCHAR(255) NULL
 )
 
