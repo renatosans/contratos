@@ -1,6 +1,6 @@
 
 
-SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS')
+SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND')
 
 
 CREATE TABLE OINS(
@@ -55,9 +55,9 @@ CREATE TABLE OCRD(
     IndustryC   INT NULL
 )
 
-INSERT INTO OCRD(CardCode, CardName, CardFName) VALUES (1, 'CNSM LOGISTICA', 'CNSM')
-INSERT INTO OCRD(CardCode, CardName, CardFName) VALUES (2, 'FSETE CONSULTORIA', 'FSETE')
-INSERT INTO OCRD(CardCode, CardName, CardFName) VALUES (3, 'GLOBE SERVIÇOS CONTABEIS', 'GLOBE')
+INSERT INTO OCRD(CardCode, CardName, CardFName, IndustryC) VALUES (1, 'CNSM LOGISTICA', 'CNSM', 3)
+INSERT INTO OCRD(CardCode, CardName, CardFName, IndustryC) VALUES (2, 'FSETE CONSULTORIA', 'FSETE', 2)
+INSERT INTO OCRD(CardCode, CardName, CardFName, IndustryC) VALUES (3, 'GLOBE SERVIÇOS CONTABEIS', 'GLOBE', 8)
 SELECT * FROM OCRD
 
 
@@ -158,3 +158,19 @@ INSERT INTO OHPS(PosId, Name) VALUES (3, 'Técnico')
 INSERT INTO OHPS(PosId, Name) VALUES (4, 'Gerente')
 INSERT INTO OHPS(PosId, Name) VALUES (5, 'Assistente')
 INSERT INTO OHPS(PosId, Name) VALUES (6, 'Recursos Humanos')
+
+
+CREATE TABLE OOND(
+    IndCode   INT NULL,
+    IndName   VARCHAR(255) NULL,
+	IndDesc   VARCHAR(255) NULL
+)
+
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (1, 'Telecom', 'Telecomunicações')
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (2, 'Consultoria', 'Consultoria')
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (3, 'Logistica', 'Transporte e Logística')
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (4, 'Utilidades', 'Utilidades e Serviços Públicos')
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (5, 'Siderurgica', 'Metalurgia e Siderurgia')
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (6, 'Agropecuária', 'Agricultura e Pecuária')
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (7, 'Varejo', 'Varejo')
+INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (8, 'Contabil', 'Serviços Contábeis')

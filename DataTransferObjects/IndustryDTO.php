@@ -2,9 +2,9 @@
 
 // Industry = Segmento de atuação
 class IndustryDTO{
-    var $id           = 0;
-    var $name         = "";
-    var $description  = "";
+    public int $id              = 0;
+    public String $name         = "";
+    public String $description  = "";
 
 
     function __construct(){
