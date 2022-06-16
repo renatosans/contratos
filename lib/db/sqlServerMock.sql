@@ -130,9 +130,9 @@ CREATE TABLE OHEM(
     EmpID       INT NULL,
     FirstName   VARCHAR(255) NULL,
     MiddleName  VARCHAR(255) NULL,
-	LastName    VARCHAR(255) NULL,
-	Position    INT NULL,
-	Email       VARCHAR(255) NULL
+    LastName    VARCHAR(255) NULL,
+    Position    INT NULL,
+    Email       VARCHAR(255) NULL
 )
 
 INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (1, 'ISABELA', 'CRISTINA', 'CASSIANO', 'isabela@gmail.com');
@@ -143,3 +143,16 @@ INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (5, 'VINI
 INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Email) VALUES (6, 'GEILDA', 'CAMPOS ALVARIO', 'MARQUEZ', 'geilda33@gmail.com');
 
 SELECT EmpID, FirstName, LastName, Email FROM OHEM
+
+
+CREATE TABLE OHPS(
+    PosId   INT NULL,
+    Name    VARCHAR(255) NULL
+)
+
+INSERT INTO OHPS(PosId, Name) VALUES (1, 'Vendedor')
+INSERT INTO OHPS(PosId, Name) VALUES (2, 'Auxiliar')
+INSERT INTO OHPS(PosId, Name) VALUES (3, 'Técnico')
+INSERT INTO OHPS(PosId, Name) VALUES (4, 'Gerente')
+INSERT INTO OHPS(PosId, Name) VALUES (5, 'Assistente')
+INSERT INTO OHPS(PosId, Name) VALUES (6, 'Recursos Humanos')
