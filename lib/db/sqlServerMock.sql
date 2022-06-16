@@ -178,13 +178,14 @@ INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (8, 'Contabil', 'Serviços Co
 
 CREATE TABLE OCPR(
     CntctCode   INT NULL,
+    CardCode    INT NULL,
     Name        VARCHAR(255) NULL,
     Tel1        VARCHAR(255) NULL,
     Cellolar    VARCHAR(255) NULL,
     E_MailL     VARCHAR(255) NULL
 )
 
-INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (1, 'Gabrielle Lins da Costa', '997150782', 'gabrielle_lins@gmail.com.br')
-INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (2, 'Joao Carlos Cardoso', '996481227', 'joao45@hotmail.com.br')
-INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (3, 'Vicente Santos da Silva', '997296815', 'vicente_silva33@terra.com.br')
-INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (4, 'Sarah Carvalho Mendonça', '997003449', 'sarah_mendonça@gmail.com.br')
+INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (1, 3, 'Gabrielle Lins da Costa', '997150782', 'gabrielle_lins@gmail.com.br')
+INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (2, 3, 'Joao Carlos Cardoso', '996481227', 'joao45@hotmail.com.br')
+INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (3, 2, 'Vicente Santos da Silva', '997296815', 'vicente_silva33@terra.com.br')
+INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (4, 2, 'Sarah Carvalho Mendonça', '997003449', 'sarah_mendonça@gmail.com.br')
