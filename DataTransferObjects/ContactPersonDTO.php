@@ -1,11 +1,11 @@
 <?php
 
 class ContactPersonDTO{
-    var $cntctCode    = 0;
-    var $name         = "";
-    var $phoneNumber  = "";
-    var $cellNumber   = "";
-    var $email        = "";
+    public int $cntctCode  = 0;
+    public String $name    = "";
+    public $phoneNumber    = "";
+    public $cellNumber     = "";
+    public $email          = "";
 
 
     function __construct(){

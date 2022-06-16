@@ -174,3 +174,17 @@ INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (5, 'Siderurgica', 'Metalurgi
 INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (6, 'Agropecuária', 'Agricultura e Pecuária')
 INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (7, 'Varejo', 'Varejo')
 INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (8, 'Contabil', 'Serviços Contábeis')
+
+
+CREATE TABLE OCPR(
+    CntctCode   INT NULL,
+    Name        VARCHAR(255) NULL,
+    Tel1        VARCHAR(255) NULL,
+    Cellolar    VARCHAR(255) NULL,
+    E_MailL     VARCHAR(255) NULL
+)
+
+INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (1, 'Gabrielle Lins da Costa', '997150782', 'gabrielle_lins@gmail.com.br')
+INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (2, 'Joao Carlos Cardoso', '996481227', 'joao45@hotmail.com.br')
+INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (3, 'Vicente Santos da Silva', '997296815', 'vicente_silva33@terra.com.br')
+INSERT INTO OCPR(CntctCode, Name, Tel1, E_MailL) VALUES (4, 'Sarah Carvalho Mendonça', '997003449', 'sarah_mendonça@gmail.com.br')
