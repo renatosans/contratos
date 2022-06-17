@@ -8,13 +8,13 @@ CREATE DATABASE [SBO_DATACOPY]
 ( NAME = N'SBO_DATACOPY_log', FILENAME = N'C:\Users\Public\SBO_DATACOPY_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
 GO
 
+
 USE [SBO_DATACOPY]
 
 /*
     SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND
-    name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OMRC', 'OSLP')
+    name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OSLP')
 */
-
 
 CREATE TABLE OINS(
  InsID              INT NULL,
@@ -53,8 +53,7 @@ CREATE TABLE OINS(
 INSERT INTO OINS(InsID, ManufSN, InternalSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A5C0011032437', 'WX7005', 123456, 'Konica Minolta Bizhub C454e', 3, 'A', 2)
 INSERT INTO OINS(InsID, ManufSN, InternalSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (2, 'A0V0011001804', 'EF4608', 123456, 'COPIADORA Bizhub PRO C6501', 3, 'A', 2)
 UPDATE OINS SET U_InstallationDate = GETDATE(), U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_BwPageCounter2 = 123456 WHERE InsId = 1
-SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
-SELECT * FROM OINS WHERE (status = 'A' OR status = 'L') AND U_InstallationDate > GETDATE() ORDER BY manufSN
+UPDATE OINS SET U_InstallationDate = GETDATE(), U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_BwPageCounter2 = 123456 WHERE InsId = 2
 
 
 /* OCRD - Business Partner Card */
