@@ -30,7 +30,7 @@ class SalesPersonDAO{
     function RetrieveRecord($slpCode){
         $dto = null;
 
-        // Procura na tabela OSLP (Sales Person)
+        // Procura na tabela de vendedores  OSLP (Sales Person)
         $query = "SELECT SlpCode, SlpName, Commission, U_SerializedData FROM OSLP WHERE SlpCode = '".$slpCode."'";
 
         $recordSet = sqlsrv_query($this->sqlserverConnection, $query);

@@ -1,6 +1,6 @@
 
 
-SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OMRC')
+SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OMRC', 'OSLP')
 
 
 CREATE TABLE OINS(
@@ -202,3 +202,16 @@ INSERT INTO OMRC(FirmCode, FirmName) VALUES (3, 'Lexmark')
 INSERT INTO OMRC(FirmCode, FirmName) VALUES (4, 'Konica Minolta')
 INSERT INTO OMRC(FirmCode, FirmName) VALUES (5, 'Brother')
 INSERT INTO OMRC(FirmCode, FirmName) VALUES (6, 'Xerox')
+
+
+CREATE TABLE OSLP(
+    SlpCode           INT NULL,
+    SlpName           VARCHAR(255) NULL,
+	Commission        DECIMAL,
+	U_SerializedData  TEXT
+)
+
+INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (1, 'Candido Martins', 4.3, '')
+INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (2, 'Custodio Alcantara Neto', 3.9, '')
+INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (3, 'Maria de Menezes', 4.1, '')
+INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (4, 'Rodolfo Zimmerman', 4.2, '')
