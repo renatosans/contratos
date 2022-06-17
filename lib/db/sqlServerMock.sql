@@ -53,7 +53,6 @@ CREATE TABLE OINS(
 INSERT INTO OINS(InsID, ManufSN, InternalSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A0V0011001804', 'EF4608', 123456, 'COPIADORA Bizhub PRO C6501', 3, 'A', 2)
 INSERT INTO OINS(InsID, ManufSN, InternalSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A5C0011032437', 'WX7005', 123456, 'Konica Minolta Bizhub C454e', 3, 'A', 2)
 UPDATE OINS SET U_InstallationDate = GETDATE(), U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_BwPageCounter2 = 123456 WHERE InsId = 1
-SELECT * FROM OINS
 SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
 SELECT * FROM OINS WHERE (status = 'A' OR status = 'L') AND U_InstallationDate > GETDATE() ORDER BY manufSN
 
@@ -85,6 +84,7 @@ INSERT INTO @ACCESSORIES(Code, U_ItemName, U_Amount) VALUES (1, 'Unidade de Fus�
 SELECT Code, U_InsId, U_ItemCode, U_ItemName, U_Amount FROM @ACCESSORIES WHERE Code = 1
 
 
+/* OITM - Items */
 CREATE TABLE OITM(
     ItemCode    INT NULL,
     ItemName    VARCHAR(255) NULL,
@@ -104,6 +104,7 @@ INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (4, 'Suporte',
 INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (5, 'Unidade de Imagem', 200, 940.99)
 
 
+/* OITB - Item Groups */
 CREATE TABLE OITB(
     ItmsGrpCod   INT NULL,
     ItmsGrpNam   VARCHAR(255) NULL
@@ -115,6 +116,7 @@ INSERT INTO OITB(ItmsGrpCod, ItmsGrpNam) VALUES (300, 'UNIDADES DE IMAGEM')
 INSERT INTO OITB(ItmsGrpCod, ItmsGrpNam) VALUES (400, 'UNIDADES DE FUSÃO')
 
 
+/* OSCS - Service Call Statuses */
 CREATE TABLE OSCS(
     StatusID    INT NULL,
     Name        VARCHAR(255) NULL,
@@ -127,6 +129,7 @@ INSERT INTO OSCS(StatusID, Name) VALUES (3, 'CANCELADO')
 INSERT INTO OSCS(StatusID, Name) VALUES (4, 'AGUARDANDO PEÇAS')
 
 
+/* OSCT - Service Call Types */
 CREATE TABLE OSCT(
     CallTypeID  INT NULL,
     Name        VARCHAR(255) NULL,
@@ -138,6 +141,7 @@ INSERT INTO OSCT(CallTypeID, Name) VALUES (2, 'Manutenção Corretiva')
 INSERT INTO OSCT(CallTypeID, Name) VALUES (3, 'Retorno')
 
 
+/* OHEM - Employees */
 CREATE TABLE OHEM(
     EmpID       INT NULL,
     FirstName   VARCHAR(255) NULL,
@@ -155,6 +159,7 @@ INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES
 INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (6, 'GEILDA', 'CAMPOS ALVARIO', 'MARQUEZ', 1, 'geilda33@gmail.com');
 
 
+/* OHPS - Employee Position */
 CREATE TABLE OHPS(
     PosId   INT NULL,
     Name    VARCHAR(255) NULL
@@ -168,6 +173,7 @@ INSERT INTO OHPS(PosId, Name) VALUES (5, 'Assistente')
 INSERT INTO OHPS(PosId, Name) VALUES (6, 'Recursos Humanos')
 
 
+/* OOND - Industries */
 CREATE TABLE OOND(
     IndCode   INT NULL,
     IndName   VARCHAR(255) NULL,
@@ -184,6 +190,7 @@ INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (7, 'Varejo', 'Varejo')
 INSERT INTO OOND(IndCode, IndName, IndDesc) VALUES (8, 'Contabil', 'Serviços Contábeis')
 
 
+/* OCPR - Contact Persons */
 CREATE TABLE OCPR(
     CntctCode   INT NULL,
     CardCode    INT NULL,
@@ -199,6 +206,7 @@ INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (3, 2, 'Vicent
 INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (4, 2, 'Sarah Carvalho Mendonça', '997003449', 'sarah_mendonça@gmail.com.br')
 
 
+/* OMRC - Manufacturers */
 CREATE TABLE OMRC(
     FirmCode  INT NULL,
     FirmName  VARCHAR(255) NULL
@@ -212,6 +220,7 @@ INSERT INTO OMRC(FirmCode, FirmName) VALUES (5, 'Brother')
 INSERT INTO OMRC(FirmCode, FirmName) VALUES (6, 'Xerox')
 
 
+/* OSLP - Sales Person */
 CREATE TABLE OSLP(
     SlpCode           INT NULL,
     SlpName           VARCHAR(255) NULL,
