@@ -13,22 +13,21 @@ include_once("../DataTransferObjects/ManufacturerDTO.php");
 
 
 // Abre a conexao com o banco de dados
-$dataConnector = new DataConnector('both');
+$dataConnector = new DataConnector('mySql');
 $dataConnector->OpenConnection();
-if (($dataConnector->mysqlConnection == null) || ($dataConnector->sqlserverConnection == null)) {
+if ($dataConnector->mysqlConnection == null) {
     echo 'Não foi possível se connectar ao bando de dados!';
     exit;
 }
 
-
 // Cria os objetos de mapeamento objeto-relacional
 $equipmentModelDAO = new EquipmentModelDAO($dataConnector->mysqlConnection);
 $equipmentModelDAO->showErrors = 1;
-$manufacturerDAO = new ManufacturerDAO($dataConnector->sqlserverConnection);
+$manufacturerDAO = new ManufacturerDAO($dataConnector->mysqlConnection);
 $manufacturerDAO->showErrors = 1;
 
 // Busca os fabricantes cadastrados no sistema
-$manufacturerArray = $manufacturerDAO->RetrieveRecordArray("FirmCode <> -1 ORDER BY FirmCode ASC");
+$manufacturerArray = $manufacturerDAO->RetrieveRecordArray("id >= 1 ORDER BY nome DESC");
 
 
 ?>
@@ -47,7 +46,7 @@ $manufacturerArray = $manufacturerDAO->RetrieveRecordArray("FirmCode <> -1 ORDER
         <select name="fabricante" style="width: 98%;">
         <?php
             foreach ($manufacturerArray as $manufacturer) {
-                echo "<option value=".$manufacturer->FirmCode." >".$manufacturer->FirmName."</option>";
+                echo "<option value=".$manufacturer->id." >".$manufacturer->nome."</option>";
             }
         ?>
         </select>
