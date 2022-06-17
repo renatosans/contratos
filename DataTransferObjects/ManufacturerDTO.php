@@ -1,8 +1,8 @@
 <?php
 
 class ManufacturerDTO{
-    public int $FirmCode     = 0;
-    public String $FirmName  = "";
+    public int $id       = 0;
+    public String $nome  = "";
 
 
     function __construct(){

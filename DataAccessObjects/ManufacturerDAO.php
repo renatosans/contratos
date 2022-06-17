@@ -2,12 +2,12 @@
 
 class ManufacturerDAO{
 
-    var $sqlserverConnection;
+    var $mysqlConnection;
     var $showErrors;
 
     #construtor
-    function __construct($sqlserverConnection){
-        $this->sqlserverConnection = $sqlserverConnection;
+    function __construct($mysqlConnection){
+        $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }
 
@@ -32,15 +32,15 @@ class ManufacturerDAO{
         return $dtoArray;
     }
 
-    static function GetManufacturerName($sqlserverConnection, $manufacturerCode) {
-        $manufacturerName = "";
-        if (empty($manufacturerCode)) return $manufacturerName;
+    static function GetManufacturerName($mysqlConnection, $manufacturerCode) {
+        if (empty($manufacturerCode)) return ""; // early return if empty
 
-        $manufacturerDAO = new ManufacturerDAO($sqlserverConnection);
+        $manufacturerName = "";
+        $manufacturerDAO = new ManufacturerDAO($mysqlConnection);
         $manufacturerDAO->showErrors = 1;
         $manufacturerArray = $manufacturerDAO->RetrieveRecordArray();
         foreach ($manufacturerArray as $manufacturer) {
-            if ($manufacturerCode == $manufacturer->FirmCode) $manufacturerName = $manufacturer->FirmName;
+            if ($manufacturerCode == $manufacturer->id) $manufacturerName = $manufacturer->nome;
         }
 
         return $manufacturerName;
