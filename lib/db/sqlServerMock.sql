@@ -37,8 +37,8 @@ CREATE TABLE OINS(
  U_SalesPerson        INT NULL
  )
 
-INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A0V0011001804', 123456, 'COPIADORA Bizhub PRO C6501', 3, 'A', 2)
-INSERT INTO OINS(InsID, ManufSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A5C0011032437', 123456, 'Konica Minolta Bizhub C454e', 3, 'A', 2)
+INSERT INTO OINS(InsID, ManufSN, InternalSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A0V0011001804', 'EF4608', 123456, 'COPIADORA Bizhub PRO C6501', 3, 'A', 2)
+INSERT INTO OINS(InsID, ManufSN, InternalSN, ItemCode, ItemName, Customer, Status, U_Model) VALUES (1, 'A5C0011032437', 'WX7005', 123456, 'Konica Minolta Bizhub C454e', 3, 'A', 2)
 UPDATE OINS SET U_InstallationDate = GETDATE(), U_BwPageCounter = 123456, U_RemovalDate = GETDATE(), U_BwPageCounter2 = 123456 WHERE InsId = 1
 SELECT * FROM OINS
 SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status HAVING COUNT(1) > 1 AND status = 'A'
