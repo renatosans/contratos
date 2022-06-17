@@ -1,6 +1,6 @@
 
 
-SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR')
+SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OMRC')
 
 
 CREATE TABLE OINS(
@@ -189,3 +189,16 @@ INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (1, 3, 'Gabrie
 INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (2, 3, 'Joao Carlos Cardoso', '996481227', 'joao45@hotmail.com.br')
 INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (3, 2, 'Vicente Santos da Silva', '997296815', 'vicente_silva33@terra.com.br')
 INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (4, 2, 'Sarah Carvalho Mendonça', '997003449', 'sarah_mendonça@gmail.com.br')
+
+
+CREATE TABLE OMRC(
+    FirmCode  INT NULL,
+    FirmName  VARCHAR(255) NULL
+)
+
+INSERT INTO OMRC(FirmCode, FirmName) VALUES (1, 'Samsung')
+INSERT INTO OMRC(FirmCode, FirmName) VALUES (2, 'Canon')
+INSERT INTO OMRC(FirmCode, FirmName) VALUES (3, 'Lexmark')
+INSERT INTO OMRC(FirmCode, FirmName) VALUES (4, 'Konica Minolta')
+INSERT INTO OMRC(FirmCode, FirmName) VALUES (5, 'Brother')
+INSERT INTO OMRC(FirmCode, FirmName) VALUES (6, 'Xerox')
