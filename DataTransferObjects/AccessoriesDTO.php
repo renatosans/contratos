@@ -1,11 +1,11 @@
 <?php
 
 class AccessoriesDTO{
-    var $id             = 0;
-    var $equipmentCode  = 0;
-    var $itemCode       = 0;
-    var $itemName       = 0;
-    var $amount         = 0;
+    public int $id                = 0;
+    public int $equipamento       = 0;
+    public String $codigoItem     = "";
+    public String $descricaoItem  = "";
+    public int $quantidade        = 0;
 
 
     function __construct(){

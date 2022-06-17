@@ -57,6 +57,7 @@ SELECT manufSN, status, COUNT(1) quantidade FROM OINS GROUP BY manufSN, status H
 SELECT * FROM OINS WHERE (status = 'A' OR status = 'L') AND U_InstallationDate > GETDATE() ORDER BY manufSN
 
 
+/* OCRD - Business Partner Card */
 CREATE TABLE OCRD(
     CardCode    INT NULL,
     CardName    VARCHAR(255) NULL,
@@ -70,18 +71,6 @@ CREATE TABLE OCRD(
 INSERT INTO OCRD(CardCode, CardName, CardFName, IndustryC) VALUES (1, 'CNSM LOGISTICA', 'CNSM', 3)
 INSERT INTO OCRD(CardCode, CardName, CardFName, IndustryC) VALUES (2, 'FSETE CONSULTORIA', 'FSETE', 2)
 INSERT INTO OCRD(CardCode, CardName, CardFName, IndustryC) VALUES (3, 'GLOBE SERVIÇOS CONTABEIS', 'GLOBE', 8)
-
-
-DECLARE @ACCESSORIES TABLE (
-    Code        INT NULL,
-    U_InsId     INT NULL,
-    U_ItemCode  INT NULL,
-    U_ItemName  VARCHAR(255) NULL,
-    U_Amount    INT NULL
-)
-
-INSERT INTO @ACCESSORIES(Code, U_ItemName, U_Amount) VALUES (1, 'Unidade de Fusão EP-6001', 2)
-SELECT Code, U_InsId, U_ItemCode, U_ItemName, U_Amount FROM @ACCESSORIES WHERE Code = 1
 
 
 /* OITM - Items */

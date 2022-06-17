@@ -2,12 +2,12 @@
 
 class AccessoriesDAO{
 
-    var $sqlserverConnection;
+    var $mysqlConnection;
     var $showErrors;
 
     #construtor
-    function __construct($sqlserverConnection){
-        $this->sqlserverConnection = $sqlserverConnection;
+    function __construct($mysqlConnection){
+        $this->mysqlConnection = $mysqlConnection;
         $this->showErrors = 0;
     }
 
@@ -21,11 +21,11 @@ class AccessoriesDAO{
         $index = 0;
         while( $record = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_ASSOC) ){
             $dto = new AccessoriesDTO();
-            $dto->id = $record["Code"];
-            $dto->equipmentCode = $record["U_InsId"];
-            $dto->itemCode = $record["U_ItemCode"];
-            $dto->itemName = $record["U_ItemName"];
-            $dto->amount = $record["U_Amount"];
+            $dto->id = $record["id"];
+            $dto->equipamento = $record["equipamento"];
+            $dto->codigoItem = $record["codigoItem"];
+            $dto->descricaoItem = $record["descricaoItem"];
+            $dto->quantidade = $record["quantidade"];
 
             $dtoArray[$index] = $dto;
             $index++;
