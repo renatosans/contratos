@@ -14,12 +14,19 @@ class AccessoriesDAO{
     function RetrieveRecordArray($filter = null){
         $dtoArray = array();
 
-        $query = "SELECT Code, U_InsId, U_ItemCode, U_ItemName, U_Amount FROM [@ACCESSORIES] WHERE ".$filter;
-        if (empty($filter)) $query = "SELECT Code, U_InsId, U_ItemCode, U_ItemName, U_Amount FROM [@ACCESSORIES]";
-        $recordSet = sqlsrv_query($this->sqlserverConnection, $query);
+        $query = "SELECT * FROM acessorios WHERE ".$filter;
+        if (empty($filter)) $query = "SELECT * FROM acessorios";
+
+        $recordSet = mysqli_query($this->mysqlConnection, $query);
+        if ((!$recordSet) && ($this->showErrors)) {
+            print_r(mysqli_error());
+            echo '<br/><br/>';
+        }
+        $recordCount = mysqli_num_rows($recordSet);
+        if ($recordCount == 0) return $dtoArray;
 
         $index = 0;
-        while( $record = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_ASSOC) ){
+        while( $record = mysqli_fetch_array($recordSet) ){
             $dto = new AccessoriesDTO();
             $dto->id = $record["id"];
             $dto->equipamento = $record["equipamento"];
@@ -30,7 +37,7 @@ class AccessoriesDAO{
             $dtoArray[$index] = $dto;
             $index++;
         }
-        sqlsrv_free_stmt($recordSet);
+        mysqli_free_result($recordSet);
 
         return $dtoArray;
     }

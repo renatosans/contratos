@@ -84,13 +84,13 @@ function GetAccessories($equipmentCode){
     global $dataConnector;
     $accessoryList = '';
 
-//    $accessoriesDAO = new AccessoriesDAO($dataConnector->sqlserverConnection);
-//    $accessoriesDAO->showErrors = 1;
-//    $accessoriesArray = $accessoriesDAO->RetrieveRecordArray("U_InsId=".$equipmentCode);
-//    foreach ($accessoriesArray as $accessory) {
+    $accessoriesDAO = new AccessoriesDAO($dataConnector->mysqlConnection);
+    $accessoriesDAO->showErrors = 1;
+    $accessoriesArray = $accessoriesDAO->RetrieveRecordArray("equipamento=".$equipmentCode);
+    foreach ($accessoriesArray as $accessory) {
 //        if (!empty($accessoryList)) $accessoryList = $accessoryList.', ';
 //        $accessoryList = $accessoryList.$accessory->amount.' '.$accessory->itemName;
-//    }
+    }
 
     return $accessoryList;
 }
