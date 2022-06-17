@@ -90,7 +90,6 @@ INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (2, 'Tampa Fro
 INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (3, 'Bucha', 200, 35.99)
 INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (4, 'Suporte', 200, 150.99)
 INSERT INTO OITM(ItemCode, ItemName, ItmsGrpCod, AvgPrice) VALUES (5, 'Unidade de Imagem', 200, 940.99)
-SELECT * FROM OITM
 
 
 CREATE TABLE OITB(
@@ -102,7 +101,6 @@ INSERT INTO OITB(ItmsGrpCod, ItmsGrpNam) VALUES (100, 'CONSUMÍVEIS')
 INSERT INTO OITB(ItmsGrpCod, ItmsGrpNam) VALUES (200, 'PEÇAS DE REPOSIÇÃO')
 INSERT INTO OITB(ItmsGrpCod, ItmsGrpNam) VALUES (300, 'UNIDADES DE IMAGEM')
 INSERT INTO OITB(ItmsGrpCod, ItmsGrpNam) VALUES (400, 'UNIDADES DE FUSÃO')
-SELECT ItmsGrpCod, ItmsGrpNam FROM OITB ORDER BY ItmsGrpCod
 
 
 CREATE TABLE OSCS(
@@ -143,8 +141,6 @@ INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES
 INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (4, 'CAIO', 'BATISTA', 'CABRAL', 1, 'caiocabral@hotmail.com.br');
 INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (5, 'VINICIUS', 'RODRIGUES FEITOZA', 'VILLACA', 3, 'vinicius@hotmail.com');
 INSERT INTO OHEM(EmpID, FirstName, MiddleName, LastName, Position, Email) VALUES (6, 'GEILDA', 'CAMPOS ALVARIO', 'MARQUEZ', 1, 'geilda33@gmail.com');
-
-SELECT EmpID, FirstName, LastName, Email FROM OHEM
 
 
 CREATE TABLE OHPS(
