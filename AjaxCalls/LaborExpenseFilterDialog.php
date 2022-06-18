@@ -34,7 +34,7 @@ $businessPartnerDAO = new BusinessPartnerDAO($dataConnector->sqlserverConnection
 $businessPartnerDAO->showErrors = 1;
 $equipmentModelDAO = new EquipmentModelDAO($dataConnector->mysqlConnection);
 $equipmentModelDAO->showErrors = 1;
-$manufacturerDAO = new ManufacturerDAO($dataConnector->sqlserverConnection);
+$manufacturerDAO = new ManufacturerDAO($dataConnector->mysqlConnection);
 $manufacturerDAO->showErrors = 1;
 
 
@@ -48,7 +48,7 @@ $modelArray = $equipmentModelDAO->RetrieveRecordArray("id > 0 ORDER BY modelo");
 $manufacturerArray = array();
 $tempArray = $manufacturerDAO->RetrieveRecordArray();
 foreach ($tempArray as $manufacturer) {
-    $manufacturerArray[$manufacturer->FirmCode] = $manufacturer->FirmName;
+    $manufacturerArray[$manufacturer->id] = $manufacturer->nome;
 }
 
 
