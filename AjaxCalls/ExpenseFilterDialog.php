@@ -36,8 +36,9 @@ $businessPartnerDAO = new BusinessPartnerDAO($dataConnector->sqlserverConnection
 $businessPartnerDAO->showErrors = 1;
 $equipmentModelDAO = new EquipmentModelDAO($dataConnector->mysqlConnection);
 $equipmentModelDAO->showErrors = 1;
-$manufacturerDAO = new ManufacturerDAO($dataConnector->sqlserverConnection);
+$manufacturerDAO = new ManufacturerDAO($dataConnector->mysqlConnection);
 $manufacturerDAO->showErrors = 1;
+
 
 // Recupera os clientes cadastrados no sistema
 $clientArray = $businessPartnerDAO->RetrieveRecordArray("CardName IS NOT NULL ORDER BY CardName");
@@ -49,8 +50,9 @@ $modelArray = $equipmentModelDAO->RetrieveRecordArray("id > 0 ORDER BY modelo");
 $manufacturerArray = array();
 $tempArray = $manufacturerDAO->RetrieveRecordArray();
 foreach ($tempArray as $manufacturer) {
-    $manufacturerArray[$manufacturer->FirmCode] = $manufacturer->FirmName;
+    $manufacturerArray[$manufacturer->id] = $manufacturer->nome;
 }
+
 
 ?>
 
@@ -152,5 +154,6 @@ $dataConnector->CloseConnection();
     $("select[name=businessPartnerCode]").change(function() { GetEquipmentOptions(); });
     GetEquipmentOptions();
 
-    $("#btnOK").click(function() { OkButtonClicked(); });
+    $("#btnOK").button({ icons: {primary:'ui-icon-circle-check'} }).click(function() { OkButtonClicked(); });
+
 </script>
