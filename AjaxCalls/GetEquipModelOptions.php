@@ -11,9 +11,9 @@ include_once("../DataTransferObjects/ManufacturerDTO.php");
 $modelId = $_GET['modelId'];
 
 // Abre a conexao com o banco de dados
-$dataConnector = new DataConnector('both');
+$dataConnector = new DataConnector('mySql');
 $dataConnector->OpenConnection();
-if (($dataConnector->mysqlConnection == null) || ($dataConnector->sqlserverConnection == null)) {
+if ($dataConnector->mysqlConnection == null) {
     echo 'Não foi possível se connectar ao bando de dados!';
     exit;
 }
@@ -22,7 +22,7 @@ if (($dataConnector->mysqlConnection == null) || ($dataConnector->sqlserverConne
 // Cria os objetos de mapeamento objeto-relacional
 $equipmentModelDAO = new EquipmentModelDAO($dataConnector->mysqlConnection);
 $equipmentModelDAO->showErrors = 1;
-$manufacturerDAO = new ManufacturerDAO($dataConnector->sqlserverConnection);
+$manufacturerDAO = new ManufacturerDAO($dataConnector->mysqlConnection);
 $manufacturerDAO->showErrors = 1;
 
 
@@ -33,7 +33,7 @@ $modelArray = $equipmentModelDAO->RetrieveRecordArray("id > 0 ORDER BY modelo");
 $manufacturerArray = array();
 $tempArray = $manufacturerDAO->RetrieveRecordArray();
 foreach ($tempArray as $manufacturer) {
-    $manufacturerArray[$manufacturer->FirmCode] = $manufacturer->FirmName;
+    $manufacturerArray[$manufacturer->id] = $manufacturer->nome;
 }
 
 

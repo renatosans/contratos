@@ -27,7 +27,7 @@ $manufacturerDAO = new ManufacturerDAO($dataConnector->mysqlConnection);
 $manufacturerDAO->showErrors = 1;
 
 // Busca os fabricantes cadastrados no sistema
-$manufacturerArray = $manufacturerDAO->RetrieveRecordArray("id >= 1 ORDER BY nome DESC");
+$manufacturerArray = $manufacturerDAO->RetrieveRecordArray("id > 0 ORDER BY nome DESC");
 
 
 ?>
