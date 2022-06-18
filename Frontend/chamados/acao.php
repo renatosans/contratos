@@ -67,7 +67,7 @@ if( $acao == "store" ) {
         exit;
     }
     $modelName = $equipmentModel->modelo;
-    $manufacturerName = ManufacturerDAO::GetManufacturerName($dataConnector->sqlserverConnection, $equipmentModel->fabricante);
+    $manufacturerName = ManufacturerDAO::GetManufacturerName($dataConnector->mysqlConnection, $equipmentModel->fabricante);
 
     $serviceCall->defeito                 = $_REQUEST["defeito"];
     $serviceCall->dataAbertura            = $_REQUEST["dataAbertura"];
