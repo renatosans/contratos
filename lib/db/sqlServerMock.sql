@@ -206,3 +206,24 @@ INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (1, 'Can
 INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (2, 'Custodio Alcantara Neto', 3.9, '')
 INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (3, 'Maria de Menezes', 4.1, '')
 INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (4, 'Rodolfo Zimmerman', 4.2, '')
+
+
+/* CRD1 - Business Partners - Addresses */
+CREATE TABLE CRD1(
+    CardCode      INT NULL,
+    Address       VARCHAR(255) NULL,
+    AddrType      CHAR(2),
+    Street        VARCHAR(255) NULL,
+    StreetNo      VARCHAR(255) NULL,
+    Building      VARCHAR(255) NULL,
+    ZipCode       VARCHAR(255) NULL,
+    Block         VARCHAR(255) NULL,
+    City          VARCHAR(255) NULL,
+    State         VARCHAR(255) NULL,
+    Country       VARCHAR(255) NULL,
+    U_Secretaria  VARCHAR(255) NULL
+)
+
+INSERT INTO CRD1(CardCode, Address, Street, StreetNo, City, Country) VALUES (1, 'END. ENTREGA', 'Rua Marques de Olinda', '56', 'São Paulo', 'Brasil')
+INSERT INTO CRD1(CardCode, Address, Street, StreetNo, City, Country) VALUES (2, 'END. ENTREGA', 'Rua Silva Bueno', '370', 'São Paulo', 'Brasil')
+INSERT INTO CRD1(CardCode, Address, Street, StreetNo, City, Country) VALUES (3, 'END. COBRANÇA', 'Rua Pedro de Godoi', '120', 'São Paulo', 'Brasil')
