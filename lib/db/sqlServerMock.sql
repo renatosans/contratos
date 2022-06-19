@@ -13,7 +13,7 @@ USE [SBO_DATACOPY]
 
 /*
     SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND
-    name IN ('OINS', 'OCRD', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OSLP')
+    name IN ('OINS', 'OCRD', 'CRD1', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OSLP', 'OINV', 'INV1')
 */
 
 CREATE TABLE OINS(
@@ -77,7 +77,7 @@ CREATE TABLE OITM(
     ItemCode    INT NULL,
     ItemName    VARCHAR(255) NULL,
     ItmsGrpCod  INT NULL,
-	AvgPrice    DECIMAL,
+	AvgPrice    DECIMAL(15,2),
     UserText    VARCHAR(255) NULL,
     U_Expenses         VARCHAR(255) NULL,
     U_Durability       VARCHAR(255) NULL,
@@ -198,7 +198,7 @@ INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (4, 2, 'Sarah 
 CREATE TABLE OSLP(
     SlpCode           INT NULL,
     SlpName           VARCHAR(255) NULL,
-	Commission        DECIMAL,
+	Commission        DECIMAL(4,2),
 	U_SerializedData  TEXT
 )
 
@@ -227,3 +227,30 @@ CREATE TABLE CRD1(
 INSERT INTO CRD1(CardCode, Address, Street, StreetNo, City, Country) VALUES (1, 'END. ENTREGA', 'Rua Marques de Olinda', '56', 'São Paulo', 'Brasil')
 INSERT INTO CRD1(CardCode, Address, Street, StreetNo, City, Country) VALUES (2, 'END. ENTREGA', 'Rua Silva Bueno', '370', 'São Paulo', 'Brasil')
 INSERT INTO CRD1(CardCode, Address, Street, StreetNo, City, Country) VALUES (3, 'END. COBRANÇA', 'Rua Pedro de Godoi', '120', 'São Paulo', 'Brasil')
+
+
+/* OINV - A/R Invoice */
+CREATE TABLE OINV(
+    DocNum      INT NULL,
+    Serial      VARCHAR(255) NULL,
+	DocDate     DATE NULL,
+	CardCode    INT NULL,
+	CardName    VARCHAR(255) NULL,
+	Comments    TEXT,
+	DocDueDate  DATE NULL,
+	DocTotal    DECIMAL(15,2),
+	U_demFaturamento   INT NULL
+)
+
+INSERT INTO OINV(DocNum, DocDate, CardCode, CardName, DocTotal, U_demFaturamento) VALUES (123, GETDATE(), 3, 'GLOBE SERVIÇOS CONTABEIS', 66.35, 0)
+INSERT INTO OINV(DocNum, DocDate, CardCode, CardName, DocTotal, U_demFaturamento) VALUES (456, GETDATE(), 2, 'FSETE CONSULTORIA', 142.10, 0)
+INSERT INTO OINV(DocNum, DocDate, CardCode, CardName, DocTotal, U_demFaturamento) VALUES (789, GETDATE(), 3, 'GLOBE SERVIÇOS CONTABEIS', 89.77, 0)
+INSERT INTO OINV(DocNum, DocDate, CardCode, CardName, DocTotal, U_demFaturamento) VALUES (555, GETDATE(), 2, 'FSETE CONSULTORIA', 345.66, 0)
+
+
+/* INV1 - A/R Invoice - Rows */
+CREATE TABLE INV1(
+    DocEntry      INT NULL,
+	ItemCode      INT NULL,
+	LineTotal     DECIMAL(15,2)
+)
