@@ -150,7 +150,7 @@
         $equipmentDAO->showErrors = 1;
         $equipmentModelDAO = new EquipmentModelDAO($dataConnector->mysqlConnection);
         $equipmentModelDAO->showErrors = 1;
-        $manufacturerDAO = new ManufacturerDAO($dataConnector->sqlserverConnection);
+        $manufacturerDAO = new ManufacturerDAO($dataConnector->mysqlConnection);
         $manufacturerDAO->showErrors = 1;
         $readingDAO = new ReadingDAO($dataConnector->mysqlConnection);
         $readingDAO->showErrors = 1;
@@ -194,7 +194,7 @@
         $manufacturerArray = array(0=>"");
         $tempArray = $manufacturerDAO->RetrieveRecordArray();
         foreach ($tempArray as $manufacturer) {
-            $manufacturerArray[$manufacturer->FirmCode] = $manufacturer->FirmName;
+            $manufacturerArray[$manufacturer->id] = $manufacturer->nome;
         }
 
         // Busca os modelos de equipamento cadastrados no sistema
