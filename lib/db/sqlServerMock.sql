@@ -234,13 +234,13 @@ CREATE TABLE OINV(
     DocEntry    INT NULL,
     DocNum      INT NULL,
     Serial      VARCHAR(255) NULL,
-	DocDate     DATE NULL,
-	CardCode    INT NULL,
-	CardName    VARCHAR(255) NULL,
-	Comments    VARCHAR(4000) NULL,
-	DocDueDate  DATE NULL,
-	DocTotal    DECIMAL(15,2),
-	U_demFaturamento   INT NULL
+    DocDate     DATE NULL,
+    CardCode    INT NULL,
+    CardName    VARCHAR(255) NULL,
+    Comments    VARCHAR(4000) NULL,
+    DocDueDate  DATE NULL,
+    DocTotal    DECIMAL(15,2),
+    U_demFaturamento   INT NULL
 )
 
 INSERT INTO OINV(DocNum, DocDate, CardCode, CardName, DocTotal, U_demFaturamento) VALUES (123, GETDATE(), 3, 'GLOBE SERVIÇOS CONTABEIS', 66.35, 0)
