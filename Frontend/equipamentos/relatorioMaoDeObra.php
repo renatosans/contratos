@@ -38,8 +38,9 @@
     $serviceStatisticsDAO->showErrors = 1;
 
     $stats = $serviceStatisticsDAO->RetrieveRecord($month, $year);
-    $tempoTotalAtendimento = $stats->tempoEmAtendimento;
-    $totalEmSegundos = $stats->totalEmSegundos;
+    empty($stats) ? $tempoTotalAtendimento  = "" : $tempoTotalAtendimento = $stats->tempoEmAtendimento;
+    empty($stats) ? $totalEmSegundos = 0         : $totalEmSegundos = $stats->totalEmSegundos;
+
 
     // Busca os registros que se enquadram no filtro aplicado
     if ($searchMethod == 0) {
