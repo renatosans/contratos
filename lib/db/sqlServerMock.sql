@@ -237,7 +237,7 @@ CREATE TABLE OINV(
 	DocDate     DATE NULL,
 	CardCode    INT NULL,
 	CardName    VARCHAR(255) NULL,
-	Comments    TEXT,
+	Comments    VARCHAR(4000) NULL,
 	DocDueDate  DATE NULL,
 	DocTotal    DECIMAL(15,2),
 	U_demFaturamento   INT NULL
