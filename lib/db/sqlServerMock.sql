@@ -260,4 +260,12 @@ CREATE TABLE INV1(
 
 
 /* ORIN - A/R Credit Memo */
-CREATE TABLE ORIN
+CREATE TABLE ORIN(
+    DocEntry    INT NULL
+)
+
+
+/* RIN1 - A/R Credit Memo - Rows */
+CREATE TABLE RIN1(
+    DocEntry    INT NULL
+)
