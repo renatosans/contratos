@@ -250,7 +250,14 @@ INSERT INTO OINV(DocNum, DocDate, CardCode, CardName, DocTotal, U_demFaturamento
 
 /* INV1 - A/R Invoice - Rows */
 CREATE TABLE INV1(
-    DocEntry      INT NULL,
-	ItemCode      INT NULL,
-	LineTotal     DECIMAL(15,2)
+    DocEntry    INT NULL,
+    ItemCode    INT NULL,
+    Dscription  VARCHAR(255) NULL,
+    Quantity    INT NULL,
+    LineTotal   DECIMAL(15,2),
+    Usage       INT NULL
 )
+
+
+/* ORIN - A/R Credit Memo */
+CREATE TABLE ORIN
