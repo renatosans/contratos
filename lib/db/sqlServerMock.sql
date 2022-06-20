@@ -13,7 +13,7 @@ USE [SBO_DATACOPY]
 
 /*
     SELECT * FROM SYS.OBJECTS WHERE type_desc = 'USER_TABLE' AND
-    name IN ('OINS', 'OCRD', 'CRD1', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OSLP', 'OINV', 'INV1')
+    name IN ('OINS', 'OCRD', 'CRD1', 'OITM', 'OITB', 'OSCS', 'OSCT', 'OHEM', 'OHPS', 'OOND', 'OCPR', 'OSLP', 'OINV', 'INV1', 'ORIN', 'RIN1')
 */
 
 CREATE TABLE OINS(
@@ -219,8 +219,8 @@ INSERT INTO OCPR(CntctCode, CardCode, Name, Tel1, E_MailL) VALUES (4, 2, 'Sarah 
 CREATE TABLE OSLP(
     SlpCode           INT NULL,
     SlpName           VARCHAR(255) NULL,
-	Commission        DECIMAL(4,2),
-	U_SerializedData  TEXT
+    Commission        DECIMAL(4,2),
+    U_SerializedData  TEXT
 )
 
 INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (1, 'Candido Martins', 4.3, '')
@@ -252,7 +252,7 @@ INSERT INTO OINV(DocNum, DocDate, CardCode, CardName, DocTotal, U_demFaturamento
 /* INV1 - A/R Invoice - Rows */
 CREATE TABLE INV1(
     DocEntry    INT NULL,
-    ItemCode    INT NULL,
+    ItemCode    VARCHAR(255) NULL,
     Dscription  VARCHAR(255) NULL,
     Quantity    INT NULL,
     LineNum     INT NULL,
