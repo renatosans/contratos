@@ -231,6 +231,7 @@ INSERT INTO OSLP(SlpCode, SlpName, Commission, U_SerializedData) VALUES (4, 'Rod
 
 /* OINV - A/R Invoice */
 CREATE TABLE OINV(
+    DocEntry    INT NULL,
     DocNum      INT NULL,
     Serial      VARCHAR(255) NULL,
 	DocDate     DATE NULL,
@@ -254,6 +255,7 @@ CREATE TABLE INV1(
     ItemCode    INT NULL,
     Dscription  VARCHAR(255) NULL,
     Quantity    INT NULL,
+    LineNum     INT NULL,
     LineTotal   DECIMAL(15,2),
     Usage       INT NULL
 )
@@ -261,11 +263,15 @@ CREATE TABLE INV1(
 
 /* ORIN - A/R Credit Memo */
 CREATE TABLE ORIN(
-    DocEntry    INT NULL
+    DocEntry    INT NULL,
+    DocDate     DATE NULL
 )
 
 
 /* RIN1 - A/R Credit Memo - Rows */
 CREATE TABLE RIN1(
-    DocEntry    INT NULL
+    DocEntry    INT NULL,
+    BaseEntry   INT NULL,
+    BaseLine    INT NULL,
+    BaseType    INT NULL
 )
