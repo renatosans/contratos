@@ -25,7 +25,7 @@ class EquipmentReadingDAO {
         $query  .= "JOIN OINS EQP ON LEITURA.codigoCartaoEquipamento = EQP.insID ";
         $query  .= "JOIN OCRD CLI ON EQP.customer = CLI.cardCode ";
         $query  .= "JOIN MYSQL...modeloEquipamento MDL ON EQP.U_Model = MDL.id ";
-        $query  .= "JOIN OMRC FAB ON MDL.fabricante = FAB.FirmCode ";
+        $query  .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.FirmCode ";
         $query  .= "JOIN MYSQL...contador CONTADOR ON LEITURA.contador_id = CONTADOR.id ";
         $query  .= "JOIN OHEM FUNCIONARIO ON LEITURA.assinaturaDatacopy = FUNCIONARIO.empId ";
         $query  .= "JOIN MYSQL...formaLeitura FORMA ON LEITURA.formaLeitura_id = FORMA.id ";

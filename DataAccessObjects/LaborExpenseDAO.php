@@ -24,7 +24,7 @@ class LaborExpenseDAO {
         $query .= "JOIN OINS EQP ON CHAM.cartaoEquipamento = EQP.insID ";
         $query .= "JOIN OCRD CLI ON EQP.customer = CLI.cardCode ";
         $query .= "JOIN MYSQL...modeloEquipamento MDL ON EQP.U_Model = MDL.id ";
-        $query .= "JOIN OMRC FAB ON MDL.fabricante = FAB.FirmCode ";
+        $query .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.FirmCode ";
         $query .= "              ) LABOREXPENSES ";
         if (isset($filter) && (!empty($filter))) $query = $query." WHERE ".$filter;
 
