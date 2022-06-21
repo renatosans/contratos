@@ -18,7 +18,7 @@ class EquipmentExpenseDAO {
         $dtoArray = array();
 
         $query  = "SELECT * FROM ( ";
-        $query .= "SELECT EQP.customer AS codigoCliente, CLI.cardName + ' (' + CLI.cardCode + ')' AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, FAB.FirmName AS fabricante, ";
+        $query .= "SELECT EQP.customer AS codigoCliente, CLI.cardName + ' (' + CLI.cardCode + ')' AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, FAB.nome AS fabricante, ";
         $query .= "CHAM.dataAtendimento AS dataDespesa, CASE WHEN DESP.codigoInsumo IS NULL THEN CAST(DESP.quantidade AS VARCHAR) + 'UN ' + DESP.nomeItem ELSE (TINS.tipoInsumo + '( Número do Chamado: ' + CAST(CHAM.id AS VARCHAR) + ' )') END AS descricaoDespesa, ";
         $query .= "PROD.AvgPrice AS precoMedio, PROD.U_Durability AS durabilidade, DESP.totalDespesa ";
         $query .= "FROM MYSQL...chamadoServico CHAM ";
@@ -29,9 +29,9 @@ class EquipmentExpenseDAO {
         $query .= "LEFT JOIN OITM PROD ON PROD.ItemCode = DESP.codigoItem COLLATE database_default ";
         $query .= "JOIN OCRD CLI ON EQP.customer = CLI.cardCode ";
         $query .= "JOIN MYSQL...modeloEquipamento MDL ON EQP.U_Model = MDL.id ";
-        $query .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.FirmCode ";
+        $query .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.id ";
         $query .= "              UNION ALL                          ";
-        $query .= "SELECT EQP.customer AS codigoCliente, CLI.cardName + ' (' + CLI.cardCode + ')' AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, FAB.FirmName AS fabricante, ";
+        $query .= "SELECT EQP.customer AS codigoCliente, CLI.cardName + ' (' + CLI.cardCode + ')' AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, FAB.nome AS fabricante, ";
         $query .= "PED.data AS dataDespesa, CAST(ITM.quantidade AS VARCHAR) + 'UN ' + ITM.nomeItem AS descricaoDespesa, PROD.AvgPrice AS precoMedio, PROD.U_Durability AS durabilidade, ITM.total AS totalDespesa ";
         $query .= "FROM MYSQL...pedidoConsumivel PED ";
         $query .= "JOIN MYSQL...solicitacaoItem ITM ON ITM.pedidoConsumivel_id = PED.id ";
@@ -39,7 +39,7 @@ class EquipmentExpenseDAO {
         $query .= "LEFT JOIN OITM PROD ON PROD.ItemCode = ITM.codigoItem COLLATE database_default ";
         $query .= "JOIN OCRD CLI ON EQP.customer = CLI.cardCode ";
         $query .= "JOIN MYSQL...modeloEquipamento MDL ON EQP.U_Model = MDL.id ";
-        $query .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.FirmCode ";
+        $query .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.id ";
         $query .= "              ) DESPESAS ";
         if (isset($filter) && (!empty($filter))) $query = $query." WHERE ".$filter;
 

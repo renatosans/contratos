@@ -19,12 +19,12 @@ class LaborExpenseDAO {
 
         $query  = "SELECT * FROM ( ";
         $query .= "SELECT EQP.customer AS codigoCliente, CLI.cardName + ' (' + CLI.cardCode + ')' AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, ";
-        $query .= "FAB.FirmName AS fabricante, CHAM.id AS numeroChamado, CHAM.tempoAtendimento, MONTH(CHAM.dataAtendimento) AS mesReferencia, YEAR(CHAM.dataAtendimento) AS anoReferencia ";
+        $query .= "FAB.nome AS fabricante, CHAM.id AS numeroChamado, CHAM.tempoAtendimento, MONTH(CHAM.dataAtendimento) AS mesReferencia, YEAR(CHAM.dataAtendimento) AS anoReferencia ";
         $query .= "FROM MYSQL...chamadoServico CHAM ";
         $query .= "JOIN OINS EQP ON CHAM.cartaoEquipamento = EQP.insID ";
         $query .= "JOIN OCRD CLI ON EQP.customer = CLI.cardCode ";
         $query .= "JOIN MYSQL...modeloEquipamento MDL ON EQP.U_Model = MDL.id ";
-        $query .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.FirmCode ";
+        $query .= "JOIN MYSQL...fabricante FAB ON MDL.fabricante = FAB.id ";
         $query .= "              ) LABOREXPENSES ";
         if (isset($filter) && (!empty($filter))) $query = $query." WHERE ".$filter;
 
