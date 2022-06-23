@@ -18,7 +18,7 @@ class EquipmentReadingDAO {
         $dtoArray = array();
 
         $query   = "SELECT * FROM ( ";
-        $query  .= "SELECT EQP.customer AS codigoCliente, CLI.cardName + ' (' + CLI.cardCode + ')' AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, FAB.nome AS fabricante, ";
+        $query  .= "SELECT EQP.customer AS codigoCliente, CLI.cardName AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, FAB.nome AS fabricante, ";
         $query  .= "LEITURA.data AS dataLeitura, CONTADOR.nome AS tipoMedidor, LEITURA.contagem AS medicao, LEITURA.ajusteContagem AS ajusteLeitura, CASE WHEN LEITURA.reset = 0 THEN 'N' ELSE 'S' END AS reset, FUNCIONARIO.firstName + ' ' + FUNCIONARIO.lastName AS assinaturaDatacopy, ";
         $query  .= "LEITURA.assinaturaCliente AS assinaturaCliente, LEITURA.obs AS observacao, FORMA.nome AS formaLeitura, ORIGEM.nome AS origemLeitura, ORIGEM.id AS idOrigemLeitura ";
         $query  .= "FROM MYSQL.addoncontratos..leitura LEITURA ";
