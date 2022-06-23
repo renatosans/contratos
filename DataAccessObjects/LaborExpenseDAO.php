@@ -18,7 +18,7 @@ class LaborExpenseDAO {
         $dtoArray = array();
 
         $query  = "SELECT * FROM ( ";
-        $query .= "SELECT EQP.customer AS codigoCliente, CLI.cardName + ' (' + CLI.cardCode + ')' AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, ";
+        $query .= "SELECT EQP.customer AS codigoCliente, CLI.cardName AS nomeCliente, EQP.insID AS codigoEquipamento, EQP.manufSN AS serieEquipamento, MDL.id AS codigoModelo, MDL.modelo AS tagModelo, ";
         $query .= "FAB.nome AS fabricante, CHAM.id AS numeroChamado, CHAM.tempoAtendimento, MONTH(CHAM.dataAtendimento) AS mesReferencia, YEAR(CHAM.dataAtendimento) AS anoReferencia ";
         $query .= "FROM MYSQL.addoncontratos..chamadoServico CHAM ";
         $query .= "JOIN OINS EQP ON CHAM.cartaoEquipamento = EQP.insID ";
