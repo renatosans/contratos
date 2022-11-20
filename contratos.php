@@ -106,22 +106,24 @@ $contractArray = $contractDAO->RetrieveRecordArray("vendedor=".$slpCode." AND id
         <img src="<?php echo $pathImg; ?>/logo.png" />
     </div>
 
-    <div id="menu">
-        <br/>
-        <?php
-        foreach($restrictedMenu as $menuItem=>$url){
-            echo '<a href="'.$url.'" >'.$menuItem.'</a>';
-        }
-        ?>
-        <br/>
-        <a href="<?php echo $root.'/logout.php'; ?>" >
-            Sair
-        </a>
-    </div>
+    <div id="conteudo" style="display: flex; flex-direction: row;">
+        <div id="menu">
+            <br/>
+            <?php
+            foreach($restrictedMenu as $menuItem=>$url){
+                echo '<a href="'.$url.'" >'.$menuItem.'</a>';
+            }
+            ?>
+            <br/>
+            <a href="<?php echo $root.'/logout.php'; ?>" >
+                Sair
+            </a>
+        </div>
 
-    <div id="lista" class="corner ui-corner-all" >
-        <img src="<?php echo $pathImg; ?>/loading.gif" />
-        <?php GetContracts() ?>
+        <div id="lista" class="corner ui-corner-all" >
+            <img src="<?php echo $pathImg; ?>/loading.gif" />
+            <?php GetContracts() ?>
+        </div>
     </div>
 </div>
 
