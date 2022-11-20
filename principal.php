@@ -47,24 +47,26 @@ include_once("defines.php");
         <img src="<?php echo $pathImg; ?>/logo.png" />
     </div>
 
-    <div id="menu">
-        <a href="<?php echo 'principal.inc.php'; ?>" >
-            Principal
-        </a>
-        <br/>
-        <?php
-        foreach($sideMenu as $menuItem=>$url){
-            echo '<a href="'.$url.'" >'.$menuItem.'</a>';
-        }
-        ?>
-        <br/>
-        <a href="<?php echo $root.'/logout.php'; ?>" >
-            Sair
-        </a>
-    </div>
+    <div id="conteudo" style="display: flex; flex-direction: row;">
+        <div id="menu">
+            <a href="<?php echo 'principal.inc.php'; ?>" >
+                Principal
+            </a>
+            <br/>
+            <?php
+            foreach($sideMenu as $menuItem=>$url){
+                echo '<a href="'.$url.'" >'.$menuItem.'</a>';
+            }
+            ?>
+            <br/>
+            <a href="<?php echo $root.'/logout.php'; ?>" >
+                Sair
+            </a>
+        </div>
 
-    <div id="lista" class="corner ui-corner-all" >
-        <img src="<?php echo $pathImg; ?>/loading.gif" />
+        <div id="lista" class="corner ui-corner-all" >
+            <img src="<?php echo $pathImg; ?>/loading.gif" />
+        </div>
     </div>
 </div>
 
