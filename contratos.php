@@ -78,6 +78,29 @@ $contractArray = $contractDAO->RetrieveRecordArray("vendedor=".$slpCode." AND id
     });
 </script>
 
+<?php
+    function GetContracts(){
+        foreach ($contractArray as $contract) {
+            $contractNum = str_pad($contract->numero, 5, '0', STR_PAD_LEFT);
+            $clientName = new Text(BusinessPartnerDAO::GetClientName($dataConnector->sqlserverConnection, $contract->pn));
+            $contractStatus = ContractDAO::GetStatusAsText($contract->status); 
+            $subContractArray = $subContractDAO->RetrieveRecordArray("contrato_id=".$contract->id);
+            $typeEnumeration = "";
+            foreach ($subContractArray as $subContract) {
+                if (!empty($typeEnumeration)) $typeEnumeration.= ', ';
+                $typeEnumeration.= $subContract->siglaTipoContrato;
+            }
+            $contractTypes = new Text($typeEnumeration); 
+        
+            $tags = $contractNum.' '.$clientName->Truncate(50).' '.$contractTypes->Truncate(20).' '.$contractStatus;
+            echo '<a style="float:left; text-align:center;" class="contractIcon" rel="'.$contract->id.'" rev="'.$tags.'" >';
+            echo '<img src="'.$pathImg. '/document.png" alt="" style="width:50px; height:50px;" /><br/>';
+            echo $contractNum;
+            echo '</a>';
+        }    
+    }
+?>
+
 <div id="centro">
     <div id="cabecalho">
         <img src="<?php echo $pathImg; ?>/logo.png" />
@@ -96,34 +119,9 @@ $contractArray = $contractDAO->RetrieveRecordArray("vendedor=".$slpCode." AND id
         </a>
     </div>
 
-    <!--  MENU LATERAL ALTERNATIVO
-    <div style="width:260px; height:800px; float:left;" >
-        <hr noshade="noshade" style="width:260px; color:white;" />
-        <?php
-            foreach ($contractArray as $contract) {
-                $contractNum = str_pad($contract->numero, 5, '0', STR_PAD_LEFT);
-                $clientName = new Text(BusinessPartnerDAO::GetClientName($dataConnector->sqlserverConnection, $contract->pn));
-                $contractStatus = ContractDAO::GetStatusAsText($contract->status); 
-                $subContractArray = $subContractDAO->RetrieveRecordArray("contrato_id=".$contract->id);
-                $typeEnumeration = "";
-                foreach ($subContractArray as $subContract) {
-                    if (!empty($typeEnumeration)) $typeEnumeration.= ', ';
-                    $typeEnumeration.= $subContract->siglaTipoContrato;
-                }
-                $contractTypes = new Text($typeEnumeration); 
-
-                $tags = $contractNum.' '.$clientName->Truncate(50).' '.$contractTypes->Truncate(20).' '.$contractStatus;
-                echo '<a style="float:left; text-align:center;" class="contractIcon" rel="'.$contract->id.'" rev="'.$tags.'" >';
-                echo '<img src="'.$pathImg. '/document.png" alt="" style="width:50px; height:50px;" /><br/>';
-                echo $contractNum;
-                echo '</a>';
-            }
-        ?>
-    </div>
-    -->
-
     <div id="lista" class="corner ui-corner-all" >
         <img src="<?php echo $pathImg; ?>/loading.gif" />
+        <?php GetContracts() ?>
     </div>
 </div>
 
